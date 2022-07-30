@@ -1,0 +1,38 @@
+DEPLOYING REACT APP TO GODADDY with cpanel
+
+-add homepage property with url of website as value in package.json.
+-create build file from react app - npm run build
+- go to cpanel file manager
+-go to /public_html
+-create zip file of build
+-upload zip file of build to public_html
+-extract 
+-create .htaccess file and paste the following:
+
+
+<IfModule mod_rewrite.c>
+
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule . /index.html [L]
+
+</IfModule>
+
+- DONE!
+
+
+
+
+
+
+
+
+
+
+
+
+reference: https://dev.to/crishanks/deploy-host-your-react-app-with-cpanel-in-under-5-minutes-4mf6

@@ -1,0 +1,40 @@
+HOOKS DOCUMENTATION:
+
+Forward Ref:
+
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+
+
+import React, { useRef } from "react";
+import ReactToPrint from "react-to-print";
+import { FComponentToPrint } from "./FComponentToPrint";
+
+function FunctionalPrint() {
+  let componentRef = useRef();
+  return (
+    <div>
+      <ReactToPrint
+        trigger={() => <button>PRINT</button>}
+        content={() => componentRef.current}
+      />
+      <FComponentToPrint ref={componentRef} />
+    </div>
+  );
+}
+
+export default FunctionalPrint;
+
+
+import React from "react";
+
+export const FComponentToPrint = React.forwardRef((props, ref) => {
+  return <div ref={ref}>PRINT THIS COOL CONTENT</div>;
+});

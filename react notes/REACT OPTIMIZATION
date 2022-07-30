@@ -1,0 +1,171 @@
+USE MEMO, USE CALLBACK , REACT MEMO
+
+summary:
+react memo - makes component optimized. watches for props change, and prevent re-render if no change
+
+useCallback - caches function reference returns previous to prevent re-render
+            - Returns a memoized callback.
+	    - caches the provided function instance/reference itself
+	   - if you need to cache the function useCallback
+
+useMemo  - invokes the function and caches the result of that function
+	  - if you need to cache the value, usememo
+	 - caches value, and does not recompute value on every render if dependency array variable does not change.
+        - prevents recomputing expensive calculations on every render, when not needed use previous value.
+        -see memocounter with counterone and counterTwo example. prevents recomputing isEven function when counterTwo is updated which does not involve counterone.
+        - when dependency array updates, this tells react to recompute the expensive function since it is needed.
+        -Returns a memoized value
+
+--all are for performance optimization
+--prevents re-rendering of coponents that do not need to
+-- if props do not change, memoized components do not re-render even if parent component re-renders
+-- without these, if parent component re-renders, all child components will re-render even if nothing is updated on them
+-- this may be ignored for few components and a small app but detrimental to performance for large app with many components
+
+so firstly for basic components, use React.memo to component which you dont want to re-render if there is no update
+--use this memoized component in your component tree.
+
+--basically react.memo watches props passed to your components. if props did not change, react.memo will prevent component to unnecessarily re-render.
+
+-react.memo the watchDog 
+
+ex. 
+
+import React from "react";
+
+ const Title = () => {
+  console.log("Title");
+  return <div>useCallback Hook</div>;
+};
+
+export const MemoizedTitle = React.memo(Title);
+
+
+or for shorthand - 
+
+export default component and wrap export with React.memo
+
+-- export default React.memo(Title);
+
+instead of creating a new export
+
+
+or*
+
+const Count = React.memo(({ text, count }) => {
+  console.log(`${text}`);
+  return (
+    <div>
+      {text}: {count}
+    </div>
+  );
+}); 
+
+export default Count;
+
+--wrapping the component itself - higher order component after all
+
+
+
+USECALLBACK:
+- useCallback caches the reference of a function, so that it will return the same reference even after re-render.
+- will not create a new instance of the function, will return cached reference of function
+- so that if passed to props, react.memo will know that the function did not change and will prevent re-render
+ of optimized component being passed the function as props to.
+ 
+ basically similar to useMemo but useMemo is for storing values
+
+--for props:
+- for functions passed as props in a component, use useCallback hook.
+
+  const incrementSalary = () => {
+    setSalary((prev) => prev + 1000);
+  };
+  
+    const MemoizedIncrementSalary = useCallback(incrementSalary, []);
+    
+  <MemoizedButton onClick={MemoizedIncrementSalary}>Increment Salary</MemoizedButton>
+  
+  or as a wrapper
+  
+   const incrementAge = useCallback(() => {
+    setAge((prev) => prev + 1);
+  }, [age]);
+  
+  
+
+USEMEMO:
+  
+
+ex - if you dont use useMemo,  everytime counterTwo is updated, react computes isEven function on every render even
+     when it doesnt involve counterTwo. this will cause slow ui even when counterOne is not being updated. because on every render isEven function is computed. with useMemo, react knows that counterOne did not change, so it will not recompute isEven function, on every render and when not needed like when counterTwo is being updated. this will prevent slow ui when counterTwo is updated.  
+  
+  
+  import React, { useMemo, useState } from "react";
+
+function MemoCounter() {
+  const [counterOne, setCounterOne] = useState(0);
+  const [counterTwo, setCounterTwo] = useState(0);
+
+  const incrementOne = () => setCounterOne((prev) => prev + 1);
+  const incrementTwo = () => setCounterTwo((prev) => prev + 1);
+
+  const isEven = () => {
+    let i = 0;
+
+    while (i < 200000000) i++;
+
+    return counterOne % 2 === 0;
+  };
+
+  const memoizedIsEvenValue = useMemo(isEven, [counterOne]);
+
+  return (
+    <div>
+      <div>
+        <button onClick={incrementOne}>
+          Count One - {counterOne} - {memoizedIsEvenValue ? "Even" : "Odd"}
+        </button>
+      </div>
+      <div>
+        <button onClick={incrementTwo}>Count Two - {counterTwo}</button>
+      </div>
+    </div>
+  );
+}
+
+export default MemoCounter;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  for objects, use useMemo :
+  
+  
+  const person = {
+    firstName: "Bruce",
+    lastName: "Wayne",
+  };
+
+  const memoizedPerson = useMemo(() => person, []);
+  
+  <MemoizedChildFive person={memoizedPerson} />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  if you do not use useMemo or useCallback, everytime parent component re-renders, a new reference to person object and incrementSalary function are created, and passed to the children components. which will cause them to re-render.
+ even tho the props value did not change/update, a new reference was created/ a new instance was created making the children re-render.

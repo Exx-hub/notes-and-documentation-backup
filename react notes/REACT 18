@@ -1,0 +1,66 @@
+REACT 18:
+
+major version
+
+-Automatic improvements
+-Concurrency Features
+-Foundation for future
+
+-you wont have to change your code or re-learn everything
+-what you learned still applies you still write react code the same way as before
+
+how to update:
+
+npm install react@18 react-dom@18
+
+
+
+import ReactDOM from 'react-dom'
+
+
+ReactDOM.render(<App /> , document.getElementById('root'))
+
+into---
+
+
+import ReactDOM from 'react-dom/client'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)
+
+
+
+***This is the only change required. no other change.
+
+
+
+New Features:
+
+1. Concurrency
+- a new concept and set of features (and APIs) that help with state update prioritization
+- urgent state updates can be prioritized over less urgent, long taking (blocking) updates
+
+Concurrency APIs:
+useTransition()
+startTransition()
+useDeferredValue()
+
+New Hooks for library authors:
+useSyncExternalStore()
+useInsertionEffect()
+useId()
+
+
+State Batching - grouping state changes, avoids multiple rerenders?
+
+Improved Suspense?
+
+
+
+
+
+
+
+
+
+
