@@ -1,0 +1,293 @@
+What is redux?
+
+-predictable state container for JavaScript apps
+
+Redux is a state container -
+ redux stores the state of your application.
+ - state of an app is the state shared by all individual components of your app (global state)
+ - redux stores and manages the application state 
+ - predictable - application state can change, a pattern is enforces to ensure all state transition are explicit
+   and can be tracked. the changes to your application's state become predictable.
+   
+   
+Why should you use redux?
+- if you want to manage the global state of your application in a predictable way
+- the patterns and tools provided by redux make it easier to understand when where why and how the state of your 
+  app is being updated, and how your application logic will behave when those changes occur.
+  
+  
+What is REDUX TOOLKIT?
+- official, opinionated, batteries-included toolset for efficient Redux development 
+- intended to be the standard way to write redux logic from now on.
+
+
+why redux toolkit?
+-redux core is too complicated
+-a lot of packages have to be installed to get redux to be useful
+- too much boilerplate
+
+
+REDUX TOOLKIT serves as an abstraction over redux. hides difficult parts ensuring good developer experience.
+redux toolkit doesnt depend on any ui library
+
+
+When shoud i use redux in my react applications?
+-large amounts of app state that are need in many places in the app
+-app state is updated frequently over time
+-logic to update state may be complex
+-the app has medium or larege codebase and might be worked on by many people
+
+
+Redux has a learning curve - needs to be gone through twice or thrice to get a good grasp.
+
+
+=====================
+1st Part - REDUX CORE
+=====================
+
+Three Core Concepts in Redux -
+
+1. STORE - holds state of your app
+2. ACTION - describes what you want to do / event
+3. REDUCER - ties the store and actions together
+
+
+Three fundamental principles in redux
+1. the global state of your app is stored as an object inside a sinlge store
+   - maintain our app state in a single object which would be managed by the redux store
+
+2. the only way to change the state is to dispatch an action, an object that describes what happened
+   - to update state of your app, you need to let redux know with an action, cannot directly update state object
+   - dispatch(type: "ADD_TODO", payload: todo)
+   
+3. to specify how the state tree is updated based on actions, you write pure reducers   
+   - Reducer - (previousState, action) => newState
+   
+
+// action type
+const CAKE_ORDERED = "CAKE_ORDERED"; 
+
+ // action creator
+const orderOneCake = () => {
+  // action
+  return {
+    type: CAKE_ORDERED,
+    payload: 1,
+  };
+};
+   
+
+// initial state
+const initialState = {
+  numOfCakes: 10,
+}; 
+   
+   
+// reducer
+const cakeReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CAKE_ORDERED:
+      return {
+        ...state,
+        numOfCakes: state.numOfCakes - action.payload,
+      };
+    default:
+      return state;
+  }
+};   
+   
+   
+// create store
+const store = createStore(cakeReducer);  
+
+// subscribe and unsubscribe
+const unsubscribe = store.subscribe(() =>
+  console.log("updated state", store.getState())
+);
+   
+// dispatch actions
+store.dispatch(orderOneCake());
+store.dispatch(restock(5));
+
+
+// unsubscribe from store
+unsubscribe();  
+   
+   
+  
+ BIND ACTION CREATORS
+ 
+ 
+ const actions = bindActionCreators({ orderOneCake, restock }, store.dispatch);
+
+actions.orderOneCake();
+actions.restock(4);
+
+
+instead of store.dispatch(orderOneCake()) 
+
+
+cakes and ice cream
+
+-can be managed with one reducer, and single state
+-but better to create separate state, separate reducers for each
+  
+ - use combineReducers stored as rootReducer to be able to pass multiple reducers into create store function
+  
+  const rootReducer = combineReducers({
+  cakeState: cakeReducer,
+  icecreamState: iceCreamReducer,
+});
+
+-- then pass rootReducer to createStore
+
+const store = createStore(rootReducer);
+  
+  
+  initial state { cakeState: { numOfCakes: 10 }, icecreamState: { numOfIcecream: 20 } }
+  
+  
+  state.cakeState.numOfCakes  => to access cake state
+  
+  
+  
+ IMMER Library:
+ npm i immer
+ 
+ const produce = require('immer').produce
+ 
+  case STREET_UPDATED:
+      //   return {
+      //     ...state,
+      //     address: {
+      //       ...state.address,
+      //       street: action.payload,
+      //     },
+      //   };
+      
+      return produce(state, (draft) => {
+        draft.address.street = action.payload;
+      }); 
+  
+  
+  -- instead of creating a copy of state and nested properties then changing state,
+     produce treats state as mutable. can mutate directly as shown above.
+  
+  
+ MIDDLEWARE:
+ -suggested way to extend redux with custom functionality
+ -provides a third-party extension point between dispatching an action and the moment it reaches the reducer
+ -use middleware for logging, crash reporting, performing asynchronous tasks etc.
+  
+  sample middleware - redux-logger
+  
+  
+  const reduxLogger = require("redux-logger");
+
+module.exports = logger = reduxLogger.createLogger();
+  
+  -just pass applyMiddleware function as 2nd argument to create store
+  
+const store = createStore(rootReducer, applyMiddleWare(logger));  
+  
+  
+  
+ASYNC ACTIONS in REDUX:
+
+- synchronous actions: if you dispatch one action, the state was right away updated.
+
+- async actions example - async api call to fetch data from an end point and use that data in your app.
+
+  install axios and redux-thunk
+  
+  
+  axios - requests to an api endpoint
+  redux-thunk - define async action creators
+  	       - async action creators return a function instead of an object
+  	       - these functions receives the store's dispatch method then dispatches regular synchronous actions
+  	       once the async operations have been completed.
+  
+  
+  
+  
+  // async Actions creator - from thunk
+const fetchUsers = () => {
+  return (dispatch) => {
+    dispatch(fetchUsersRequested());
+
+    axios
+      .get("http://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        const users = response.data.map((user) => user.name);
+        dispatch(fetchSucess(users));
+      })
+      .catch((error) => {
+        const errMsg = error.message;
+        dispatch(fetchUsersFailed(errMsg));
+      });
+  };
+};
+  
+ 
+ const store = createStore(reducer, applyMiddleware(thunk, logger));
+  
+  
+  store.dispatch(fetchUsers()); 
+  
+ 
+ 
+ - so basically when THUNK is passed as middleware, tells store that it can receive functions that return functions instead of objects.
+ 
+ - store passes dispatch method to these functions
+ - these functions are able to do asynchronous operations before dispatching synchronous dispatch methods
+  
+   
+   
+   
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,164 @@
+===========================================
+3rd Part - REACT w REDUX TOOLKIT feat. VITE
+===========================================
+
+
+create an app using vite
+
+npm create vite@latest react-rtk-demo
+
+
+when using react with redux toolkit - use es6 module syntax
+
+same without react, create app folder inside src which contains store
+and create features folder inside src which will include your slices/features
+
+-create a view component inside feature sub folder.
+-for example, in you cake features, create a CakeView.jsx component as sibling to cakeSlice.js
+
+for react-redux integration, install react-redux library
+
+npm i react-redux
+
+import Provider from react redux and use as wrapper in index.js if CRA or main.jsx if vite.
+
+import store also in index or main.jsx then apply as store property to Provider
+
+---wrap app component with Provider and pass store as property
+
+
+USESELECTOR HOOK:
+- to access the store state in the wrapped components, useSelector hook is used.
+- this hook is used to read data from the redux store and use in a react component
+- this hook replaces mapStateToProps. both are passed a function that takes state as parameter and returns the state
+- ready to be directly used in your components
+
+-returns  the value of a function that has access to state in the store.
+
+USEDISPATCH HOOK:
+- the same goes for useDispatch. it replaces mapDispatchToProps
+- useDispatch returns a reference to the dispatch function from the store
+
+- to use useDispatch Hook, import from react-redux then in your component, assign to a constant
+ex.   const dispatch = useDispatch();
+-- this will get access to dispatch function from store
+
+-then import actions from slice like orderCake, restockCake
+-pass as argument to dispatch function with a click event for example
+
+ex.  <button onClick={() => dispatch(orderCake(1))}>Order Cake</button>
+
+-- we add an onClick function, pass dispatch as callback and pass orderCake with 1 as argument as argument to dispatch
+
+--- this will trigger a store.dispatch(orderCake(1)) under the hood and will update the store
+
+
+
+
+***store only needed state in the store as much as possible, still use local component state if possible
+*** if something is not need outside the component, it should and can stay as local component state
+
+
+FETCHING DATA - ASYNC THUNK:
+-simple enough--
+
+first get hold of state using useSelector
+then get hold of dispatch using useDispatch
+
+-use created async function in a button or in a useEffect as argument to dispatch function
+-if successful, use in jsx
+
+***in builder addCase cakkback, it receives state which you can directly mutate with immer and
+- receives the action which is from the api call.
+
+if pending or fulfilled it has meta,payload and type properties.
+-so you can use action.payload to use the data fetched.
+
+if rejected, it will have an error property along with meta payload and type.
+-this is where you get the error message. 
+-use as action.error / action.error.message
+
+
+REDUX DEV TOOLS EXTENSION:
+play around with dev tools
+
+
+
+
+
+
+
+
+==============================================
+4th Part -TYPESCRIPT SUPPORT for REDUX TOOLKIT
+==============================================
+
+feat. vite
+
+
+npm init vite@latest <projectName>
+
+-pick react then select react-ts 
+
+
+npm i axios react-redux @reduxjs/toolkit
+
+-install libraries needed - axios, rtk and react-redux
+
+
+
+
+--add types to initialSTate
+
+type InitialState = {
+  numOfIcecream: number
+}
+
+const initialState: InitialState  = {
+  numOfIcecream: 20,
+};
+
+
+-- add type to action
+-- import PayloadACtion
+-- add PayloadAction<number> to action if payload is a number
+
+
+reducers: {
+    orderIceCream: (state, action: PayloadAction<number>) => {
+      state.numOfIcecream -= action.payload;
+    },
+    restockIceCream: (state, action: PayloadAction<number>) => {
+      state.numOfIcecream += action.payload;
+    },
+
+
+
+--for typing the store
+export two inferred types
+1. RootState
+
+2. AppDispatch 
+
+export type RootState = ReturnType<typeof store.getState>
+export type Appdispatch = typeof store.dispatch
+
+--by convention creaTe a new file hooks.ts beside store
+
+import in the file---
+
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+
+import type { RootState, Appdispatch} from "./store";
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+export const useAppDispatch = () => useDispatch<Appdispatch>()
+
+
+***export these selector and dispatch and use these as useSelector and useDispatch in your components..
+
+study useAppSelector and useAppDispatch and RootState and Appdispatch further
+
+
+type state, actions, useDispatch and useSelector
+
