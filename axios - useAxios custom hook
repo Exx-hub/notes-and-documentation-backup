@@ -1,0 +1,41 @@
+AXIOS:
+
+- learned how to create a hook for axios
+- useAxios hook
+-separate fetching data logic to a custom hook
+- by doing this, if other components need to use that logic to fetch data for other data categories,
+- you can reuse the custom hook with different parameters for your api call.
+- useful instead of re-writing the fetch logic on every component that needs it.
+
+new learning - 
+
+axios.defaults.baseURL = "https://jsonplaceholder.typicode.com";
+
+default baseurl
+
+
+ const response = await axios.request(params);
+ 
+ axios.request - for dynamic axios http calls
+ - takes in axios options
+ 
+ ex. 
+  const { response, error, loading } = useAxios({
+    url: "/posts",
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  
+---instead of 
+
+axios.get(url, {
+ url: "/posts",
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+})
+
+-- axios.request is much cleaner and allows dynamic requests. perfect for reusable custom hook
