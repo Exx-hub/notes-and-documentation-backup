@@ -1,0 +1,15 @@
+Jul 17, 2022
+
+Web DEv Simp TS
+
+in a plain html / js project
+
+
+npm i typescript
+npx tsc --init --> creates ts.config file
+
+outDir in ts.config specifies where the compiled TS into JS file will be stored.
+
+
+
+----study the simple code

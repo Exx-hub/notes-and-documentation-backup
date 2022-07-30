@@ -1,0 +1,17 @@
+May 18,2022
+
+TODAY's LEARNING:
+
+-using javascript default parameter value
+-it should be undefined or none to work
+-will not work if null or empty string
+
+
+CUSTOM HOOKS:
+-basically these are just functions that you can reuse in your components
+-this will hold logic and state
+-so instead of having the state and logic in the component, you move it to a custom hook.
+-by doing this, you can reuse this logic and state to other components.
+
+-but remember, state in custom hooks are owned by component calling them.
+-updating the state will re-render the component calling the hook

@@ -1,0 +1,58 @@
+May 24, 2022
+
+DEV TOOLS:
+
+https://developer.chrome.com/docs/devtools/dom/ - chrome dev tools
+
+-ctrl shift p for chrome dev tools options
+
+-undock to get a separate window for dev tools
+-dock to right to left etc
+
+-click on :hov to show psuedo classes
+-click on .cls to add a class
+element.style
+
+-console.table
+-wrap console log with an object to display the object name
+
+-can use ctrl f search function in elements tab of dev tools
+
+-take a screenshot from the dev tools
+
+== $0 ---- element being referenced when you inspect
+
+
+-animations
+-debugging css
+
+
+
+
+-debugging javascript***
+ -debugger****
+ -aside from debugger. the use of breakpoints***
+ 
+ 
+ 
+ NEXT JS:
+ 
+ -public folder in next js application
+  -whatver is stored here, usually assets are served statically by next js
+  -so basically all the assets in public folder are accessible in your app. those assets not in public folder cannot be accessed or loaded.
+  
+ -styling like styled components
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+

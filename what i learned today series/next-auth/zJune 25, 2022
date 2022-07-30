@@ -1,0 +1,29 @@
+June 25, 2022
+
+
+Next Auth Continuation
+
+---api practice for creating users
+
+-install bycrypt
+
+-encrypting password before saving to database
+-checking if email exists before creating user
+
+-status 422 for invalid or incomplete form values -- unprocessable entity
+
+
+---using next auth
+=> create catch all route in api folder also under auth folder. install next auth library
+
+
+im slowly wrapping my head around next auth.
+---historically, most common method of authentication is email and password.
+---save in database using a backend server like express.
+
+---next auth is an authentication system with much more features and complexity than email password alone.
+--features like google login and much more. pero basically it's just like a login api.
+
+
+
+add type="button" to a button in form to disable default behavior of submitting the form.

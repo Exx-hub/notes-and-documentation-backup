@@ -1,0 +1,42 @@
+JAN 21 ,2022 and 22
+
+-CREATING SERVER USING EXPRESS!
+-SEPARTING ROUTES
+
+-install morgan - a kind of middleware
+
+MIDDLEWARES!
+-do something in the middle.?
+-process will stop if there is no next function. need to call next function for process to proceed
+
+const myOwnMiddleware = (req, res, next) => {
+  console.log("middleware applied");
+  next();
+};
+
+
+app.use(morgan("dev"));
+app.use(myOwnMiddleware);
+
+app.get("/", postRoutes.getPosts);
+
+app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+
+CONTROLLER - all logic
+ROUTER - routes
+
+using express.Router();
+
+
+JSON and POSTMAN
+
+res.json vs res.send?
+
+reference: https://medium.com/gist-for-js/use-of-res-json-vs-res-send-vs-res-end-in-express-b50688c0cddf
+
+mongodb+srv://alvinacosta:<lokalsoul>@nodeudemy2022.whznt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+MONGO DB SETUP of DATABASE
+
+MODELS and SCHEMA setup

@@ -1,0 +1,41 @@
+JANUARY 31, 2022
+
+FUNCTION IN TS
+
+-inferred return value
+
+- explicit
+
+- optional parameter with type
+
+- function that returns nothing is void - can be infered
+
+
+FUNCTION SIGNATURE
+
+// Declare the varible sayHello, and give it a function signature that takes a string and returns nothing.
+let sayHello: (name: string) => void;
+
+// Define the function, satisfying its signature
+sayHello = (name) => {
+  console.log('Hello ' + name);
+};
+
+sayHello('Danny'); // Hello Danny
+
+
+DYNAMIC (any) TYPES
+Using the any type, we can basically revert TypeScript back into JavaScript:
+let myAge: any = '100';
+
+
+myAge = 200;
+myAge = [];
+myAge = {me: 2, her: 2}
+
+
+
+It's recommended to avoid using the any type as much as you can, as it prevents TypeScript from doing its job – and can lead to bugs.
+
+
+

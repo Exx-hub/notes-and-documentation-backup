@@ -1,0 +1,27 @@
+FEB 14-15, 2022
+
+// MIDDLEWARES
+
+1. built in
+2. custom middleware
+3. third party
+
+WHITELIST IN CORS
+
+cors
+urlencoded
+express.static
+express.json
+
+
+use of next
+
+error handling
+
+
+app.all *****
+
+
+express routing--
+
+router.route -- chaining https request for a specific path

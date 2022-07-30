@@ -1,0 +1,66 @@
+July 14 , 2022
+
+Typescript Udemy
+
+
+* right click + e ===> to open terminal for selected/current folder
+
+
+
+npm init -y
+npm i tyepscript
+npx tsc --init --rootdir src --outdir lib   => initialize tsconfig
+
+
+Created a new tsconfig.json with:                                                                                       
+                                                                                                                     TS 
+  target: es2016
+  module: commonjs
+  outDir: lib
+  rootDir: src
+  strict: true
+  esModuleInterop: true
+  skipLibCheck: true
+  forceConsistentCasingInFileNames: true
+  
+  
+  this means ts files in src gets compiled into js and put into lib folder* ? 
+  
+  
+  compile Typescript code into js
+  
+  
+  
+  
+  let message: string = "Hello World!"; ---- type annotation. 
+  
+  
++++Primitive Types:
+    
+let message: string = "Hello World!";
+message+= ' again'
+console.log(message);
+
+let a:number = 2
+let isPresent: boolean = false;
+let magic: number = 66.6;
+let hello: string = 'world';
+let notDefined: undefined = undefined;
+let notPresnet: null = null;
+let penta: symbol = Symbol('start');
+let biggy: bigint = 24n;
+
+
++++Instance Types:
+
+
+let regexp: RegExp = new RegExp('ab+c');
+let array: Array<number> = [1,2,3]
+
+let set: Set<number> = new Set([1,2,3])
+
+
++++Arrays and Tuples
+
+
+  

@@ -1,0 +1,27 @@
+CODEDAMN.COM
+
+Domain Name System
+-resolves host names like google.com into ip addresses -> 65.344.5.6
+
+DNS Resolver looks for ip address of domain name
+
+
+HTTP Status Codes
+-servers way of saying if something went right or wrong with regards to the request and returned response
+
+FTP
+- File Transfer Protocol
+
+PORT NUMBER
+-default port numbers for https - 443 http - 80
+-highest TCP port number is 65535
+
+HTTP Request Methods
+GET POST PUT PATCH DELETE .... 
+
+
+Request HEaders
+
+
+NETCAT
+nc example.com 80 -vvv

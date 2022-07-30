@@ -1,0 +1,28 @@
+July 4, 2022
+
+
+Traversy react testing -- to be continued. content is too advanced.
+
+-testing priority
+1. high value features --- the most important features in your app. like viewing and buying a product 
+2. edge cases in high value features --- like adding 1000 items in the cart
+3. things that are easy to break
+4. basic react component testing
+   -user interactions
+   - conditional rendering
+   - utils / hooks
+   
+   
+   
+LAMA dev react testing
+   
+   **TEST DRIVEN DEVELOPMENT?
+   
+    -think like a user.
+    
+ -create tests first.
+ - or create plain elements without functionalities
+ 
+ 
+ ---basically know some about testing. and can do my own simple testing
+ ---need work on mocks and api calls tho

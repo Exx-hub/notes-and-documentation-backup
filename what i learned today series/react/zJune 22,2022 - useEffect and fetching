@@ -1,0 +1,130 @@
+June 22, 2022
+
++++++USE EFFECT and fetching?++++++
+
+
+
+https://github.com/Exx-hub/moviedb/blob/master/src/App.js - find answer for this fetch when mounted
+
+? useSWR and useQuery?
+useQuery and useSWR are similar to useEffect fetch on render. 
+
+
+=> answer daw is Render as you fetch. HOW?
+=> or pre render or serverSideProps with remix or nextjs
+=> react router 6.4+
+=> best answer daw is use SUSPENSE
+
+You can continue fetching data directly in Effects if neither of these approaches suit you
+just like when you need to fetch data as component mounts. 
+
+***
+function Component(){
+  const data = someResource.read(); // might suspend --- this is as you render. question is what is someResource.read()? 
+
+
+  return //..
+}
+
+
+1. useEffect is for synchronization
+2. state transitions trigger effects
+3. effects go into event handlers
+4. render as you fetch (suspense)
+
+
+
+***When to fetch?
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** nullish coalescing operator
+
+double question mark.
+
+
+if left hand is null or undefined, return right. else return left.
+
+
+bio ?? <h1>loading</h1>
+
+if bio is null or undefined, this will return loading. if bio gets a value, it will return bio.
+
+
+---example cleanup for fethcing data in useEffect. to prevent race conditions.
+---will cancel previous fetch when another is initiated.
+
+import { useState, useEffect } from 'react';
+import { fetchBio } from './api.js';
+
+export default function Page() {
+  const [person, setPerson] = useState('Alice');
+  const [bio, setBio] = useState(null);
+  useEffect(() => {
+    let ignore = false;
+    setBio(null);
+    fetchBio(person).then(result => {
+      if (!ignore) {
+        setBio(result);
+      }
+    });
+    return () => {
+      ignore = true;
+    }
+  }, [person]);
+
+  return (
+    <>
+      <select value={person} onChange={e => {
+        setPerson(e.target.value);
+      }}>
+        <option value="Alice">Alice</option>
+        <option value="Bob">Bob</option>
+        <option value="Taylor">Taylor</option>
+      </select>
+      <hr />
+      <p><i>{bio ?? 'Loading...'}</i></p>
+    </>
+  );
+}
+
+
+
+++++++REFS++++++++++++
+
+When you want a component to “remember” some information, but you don’t want that information to trigger new renders, you can use a ref.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

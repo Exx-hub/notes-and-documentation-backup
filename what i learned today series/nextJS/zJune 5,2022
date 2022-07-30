@@ -1,0 +1,26 @@
+June 5, 2022
+
+
+React Context API in NExtJS app
+
+
+-use/managing global state in next JS using react context API
+
+
+-creating helper function or file, to separate object / object values,
+-to make code cleaner rather than verbose code and unclean.
+
+-compared implementation to Maximillian's... pretty much the same. you did it!
+
+
+
+-notification values and visibility depends on global state. when global state values change, notification
+reacts to these state changes.
+
+
+http request errors will not cause promise to fail..that's why catch block notification does not trigger...
+you can block or catch error in response before res.json()
+
+you can check if res.ok is true or false, if false throw error.
+
+new project time!

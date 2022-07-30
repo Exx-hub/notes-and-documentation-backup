@@ -1,0 +1,17 @@
+June 26, 2022
+
+
+
+
+***next auth saves token automatically in cookes
+
+local storage vs cookies
+
+
+
+protecting pages and routes and api --- client side and serverside
+
+--add session and passing pageProps.session as value in SessionProvider wrapping _app.js, will prevent session call
+on every refresh given that you are using getSession in getServerSideProps in one of your components.
+--sometimes it may be undefined if some components do not have getServerSideProps. 
+--avoiding redundant http requests

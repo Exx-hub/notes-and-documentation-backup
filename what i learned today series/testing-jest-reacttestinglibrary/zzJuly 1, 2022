@@ -1,0 +1,41 @@
+July 1, 2022
+
+
+manual testing vs unit testing / automation testing
+
+importance of testing:
+
+1. catch bugs
+2. increases confidence of application
+3. speeds up QA time
+4. can serve as documentations
+
+
+types of tests:
+
+1. Unit Tests
+2. Integration Tests
+3. End to End Tests
+
+
+
+TEST BLOCK
+
+
+test("string that describes the test", () => {
+
+   // test logic here.
+})
+
+
+can use "it" instead of "test". interchangeable.
+
+
+
+
+test block:
+1. render a component we want to test
+2. find element we want to interact with
+3. intercact with those elements
+4. assert that the results are as expected
+

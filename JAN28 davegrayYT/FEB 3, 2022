@@ -1,0 +1,109 @@
+FEB 3, 2022
+READ AND WRITE FILES
+
+// create start.txt
+
+fs.writeFile(
+  path.join(__dirname, "files", "starter.txt"),
+  "created starter.txt file",
+  (err, data) => {
+    if (err) throw err;
+
+    console.log("Write complete");
+  }
+);
+
+// async await order of operations
+
+
+const fsPromises = require("fs").promises;
+
+// console.log(fsPromises);
+
+const fileOps = async () => {
+  try {
+    const data = await fsPromises.readFile(
+      path.join(__dirname, "files", "starter.txt"),
+      "utf8"
+    );
+    console.log(data);
+
+    await fsPromises.unlink(path.join(__dirname, "files", "starter.txt"));
+    await fsPromises.writeFile(
+      path.join(__dirname, "files", "promiseWrite.txt"),
+      data
+    );
+    await fsPromises.appendFile(
+      path.join(__dirname, "files", "promiseWrite.txt"),
+      "\n\nhello this is appended"
+    );
+    await fsPromises.rename(
+      path.join(__dirname, "files", "promiseWrite.txt"),
+      path.join(__dirname, "files", "endOfPromise.txt")
+    );
+
+    const newData = await fsPromises.readFile(
+      path.join(__dirname, "files", "endOfPromise.txt"),
+      "utf8"
+    );
+    console.log(newData);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+fileOps();
+
+1. read file starter.txt
+2. save read file data to variabale 'data'
+3. write data to file called promiseWrite.txt in same folder
+4. add text to promiseWrite.txt
+5. rename promiseWrite.txt file to endOfPromise.txt
+6. read renamed file endOfPromise.txt and log to console
+
+
+// STREAM
+-- for large files - chunking into smaller parts or part by part
+
+
+const fs = require("fs");
+
+const rs = fs.createReadStream("./files/lorem.txt", { encoding: "utf8" });
+
+const ws = fs.createWriteStream("./files/new-lorem.txt");
+
+rs.on("data", (dataChunk) => {
+  ws.write(dataChunk);
+});
+
+
+// or instead of using rs.on just pipe
+
+rs.pipe(ws); -- does the same thing
+
+
+// MKDIR, RMDIR and EXISTSSYNC
+
+const fs = require("fs");
+
+if (!fs.existsSync("./new")) {
+  fs.mkdir("./new", (err) => {
+    if (err) throw err;
+
+    console.log("directory created");
+  });
+}
+
+if (fs.existsSync("./new")) {
+  fs.rmdir("./new", (err) => {
+    if (err) throw err;
+
+    console.log("directory removed");
+  });
+}
+
+- first check if there is already a directory called "new"
+- if none, create directory called new
+- if exists, remove directory
+
+-- can use this to check before copying a file or renaming etc

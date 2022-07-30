@@ -1,0 +1,52 @@
+JAN 17, 2022
+
+intro to express
+
+
+npm install express
+
+const express = require("express");
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+app.get("/", (req, res) => {
+  res.send("hello express!");
+});
+
+app.listen(PORT, () => console.log(`server is listening on port ${PORT}`));
+
+
+server started!
+
+HTTP METHODS
+GET, POST, PATCH, PUT, DELETE
+
+npm init vs npm install
+
+npm init - creates package.json file
+npm install - installs dependencies in package.json
+
+
+SENDING FILES TO THE BROWSER
+
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public/index.html"));
+});
+
+
+RECEIVE DATA FROM FRONTEND
+using body parser or express.json()
+
+BRIEF INTRO ON MIDDLEWRES
+
+
+		"isbn": 123,
+		"pageCount": 500,
+		"publishedDate": { $date: '2010-10-04T00:00:00.000-0700' },
+		"thumbnailUrl": 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/pbrown.jpg',,
+		"shortDescription": "N/A",
+		"longDescription": "N/A",
+		"status": 'PUBLISH',
+		"authors": ['Pete Brown'],
+		"categories": ['Microsoft .NET'],

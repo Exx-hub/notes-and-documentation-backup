@@ -1,0 +1,55 @@
+Feb 2
+
+****Type Aliases
+
+// ALIASES
+type boolOrNumber = boolean | number;
+type stringOrNumber = string | number;
+
+type PersonObject = {
+  name: string;
+  id: stringOrNumber
+}
+
+const person1: PersonObject = {
+  name: 'alvin',
+  id: 123
+}
+
+const person2: PersonObject = {
+  name: 'lop',
+  id: 'n/a'
+}
+
+const sayHi = (person: PersonObject) => {
+  return `Hi ${person.name}`;
+}
+
+console.log(sayHi({name: 'alvin', id: 1}));
+
+// cLASSES and CONSTRUCTORS
+// DOM
+
+// MODULES
+
+// Interfaces in TypeScript
+Interfaces define how an object should look:
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+function sayHi(person: Person) {
+  console.log(`Hi ${person.name}`);
+}
+
+sayHi({
+  name: 'John',
+  age: 48,
+}); // Hi John
+
+
+
+INTERFACE vs TYPE ALIASES
+

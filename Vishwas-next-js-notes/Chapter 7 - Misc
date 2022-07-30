@@ -1,0 +1,229 @@
+Chapter 7 - Misc
+
++++App Layout+++
+
+to conditionally render a layout - for example about page only requires a footer not a header -
+
+import Footer from "../components/Footer";
+
+function About() {
+  return <h1 className="content">About Page</h1>;
+}
+
+export default About;
+
+About.getLayout = function PageLayout(page) {
+  return (
+    <>
+      {page}
+      <Footer />
+    </>
+  );
+};
+
+
+then - 
+
+import "../styles/globals.css";
+import "../styles/layout.css";
+
+import Layout from "../components/Layout";
+
+function MyApp({ Component, pageProps }) {
+  if (Component.getLayout) {
+    return Component.getLayout(<Component {...pageProps} />); ----THIS ONE
+  }
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
+}
+
+export default MyApp;
+
+
+
++++HEAD COMPONENT+++
+-dynamic head component
+-if there is no component specific, will use the one in _app or the default one
+-changes the title of the tab, gives info about the page
+
++++IMAGE COMPONENT+++
+
+
++++Absolute Imports and Module Paths+++
+
+
+
+jsonconfig.json
+
+{
+    "compilerOptions": {
+        "baseUrl": "."
+    }
+}
+
+
+makes this - import "../styles/layout.css";
+
+into 
+
+this - import "styles/layout.css";
+
+
+--study further*****************
+- i think use this only when necessary
+
+
++++STATIC HTML EXPORT+++
+
+next build (npm run build) - build application for production in the .next folder
+
+next start (npm start) - starts a nodejs server that supports hybrid pages, serving statically generated and ser-side rendered pages
+
+next export - exports all your pages to static html files that you can serve without the need of a nodejs server -similar to what create react app does
+-allows to host your app on any static hosting service or a cdn without having to maintain a server
+-but if you do so you cannot use ISR or serverside rendering
+-you can use client side data fetching for dynamic content
+
+when to use?
+- landing pages,blogs and any app where content is generated at build time
+
+package.json -
+ "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export", --// add this
+    "lint": "next lint"
+  },
+
+
+-just like a react app, you can then deploy the "out" folder to deploy statically
+
+
++++TYPESCRIPT SUPPORT+++
+
+install ts
+
+- create blank tsconfig.json
+- npm install --save-dev typescript @types/react @types/node
+-after this is installed tsconfig.json will be populated
+- if you have aliases setup in jsconfig.json, copy to compilerOPtions in tsconfig - cause jsconfig is not in control anymore once you have ts running
+
+- by default, strict mode is false, when you feel comfy with ts change this to true
+
+
+TS + Data fetching:
+
+import {GetStaticProps, GetStaticPaths, GetServerSideProps} from 'next'
+
+export const getStaticProps: GetStaticProps = async context => {}
+
+export const getStaticPaths: GetStaticPaths = async context => {}
+
+export const getServerSideProps: GetServerSideProps = async context => {}
+
+
+TS + API Routes:
+
+import {NextApiRequest, NextApiResponse} from 'next'
+
+type Data = {
+ name: string
+ 
+ }
+
+
+export default (req: NextApiRequest, res: NextApiResponse<Data> ) => {
+ res.status(200).json({name: 'John Doe'})
+ 
+ }
+ 
+ 
++++PREVIEW MODE+++
+- built specifically to help applications that rely on a CMS
+- content managament system and is a tool that helps users create, manage and modify content on a website wihtout the need for specialized technical knowledge
+
+when to use?
+-go back here!****
+
+
+
++++REDIRECTS+++
+-add this in next.config.js
+
+redirects: async () => {
+    return [
+      {
+        source: "/about",
+        destination: "/contact",
+        permanent: false,
+      },
+    ];
+  },
+  
+-can be permanent or temporary, for example if a page is under construction, users who go to that page will be redirected to a different page, forever or until the page is back up 
+
+
++++ENV VARIABLES+++
+-next comes with built in support for env variables
+
+-create a file .env.local
+`
+DB_USER=Vishwas
+DB_PASSWORD=Password
+
+to access:
+
+export async function getServerSideProps() {
+  const user = process.env.DB_USER;
+  const password = process.env.DB_PASSWORD;
+  return {
+    props: {
+      title: "Article Title",
+      description: "Article Description",
+    },
+  };
+}
+
+-these vars are only available in node js environment not in the browser.
+so useage in getStaticProps or getServerSideProps is allowed but not in components
+
+-if you want to use env variables in the browser it should have NEXT_PUBLIC_<NAME?>
+for example -
+
+DB_USER=Vishwas --- server side
+DB_PASSWORD=Password --- server side
+NEXT_PUBLIC_NAME=Alvin --- accessible client side 
+
+process.env.NEXT_PUBLIC_NAME
+
+
+
++++MISC SUMMARY+++
+
+App layout in _app.js file
+Head component
+Image component optimization
+absolute imports and path alisaes jsconfig.json
+next export to export statically
+support for TS
+preview mode feature***go back
+next config file / redirect
+env variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+

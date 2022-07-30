@@ -1,0 +1,54 @@
+2 forms of pre-rendering:
+static generation and server-side rendering
+
+how to fetch data:
+getStaticProps - static generation
+getServerSideProps - ssr
+
+
+
+---Client Side Data Fetching:---
+-it is not always that you need to pre-render data
+ex. user dashboard page
+ - it is private because it is behind a login screen, highly personalized or user-specific, seo not relevant
+--no need to pre-render
+
+so you will rely on client side data fetching!
+
+you can use normal react useEffect or useSWR
+
+
+**pre-rendering + client side data fetching**
+ex. if you want seo plus request time data fetching => ssr with getServerSideProps
+once data has been loaded, use client side data fetching to filter events
+ vid 38 a little unclear need to rewatch***
+ 
+ what is shallow routing?
+ 
+ 
+ SUMMARY:
+ PRE-RENDERING - generating html in advance for performance and SEO
+ 2 forms - static generation and serverside rendering
+ 
+ STATIC GENERATION - html pages are built at build time and cached in a cdn 
+ normal page - getStaticProps
+ dynamic page - getStaticPAths
+ fallback key - false true blocking
+ --pages cannot be updated without full rebuild
+ ---> incremental static regeneration and revalidate
+ 
+ 
+ SSR - if you need to fetch data at request time and personalize data based on user incoming request
+ getServerSideProps
+ combined pre-rendering and client side data fetching
+
+
+
+
+
+
+
+
+
+?????when to use serverside props vs staticprops????
+ https://medium.com/eincode/next-js-data-fetching-getstaticprops-vs-getserversideprops-fcbf43d0ccac

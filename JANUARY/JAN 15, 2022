@@ -1,0 +1,208 @@
+Jan 15, 2022
+
+NANO
+
+- nano <filename>
+
+nano controls - google again if relevant
+
+
+Shell Scripting
+
+BASH SCripting
+
+bash <filename> - run script / execute file
+
+
+
+Variable in bash - (in nano?)
+
+myVar="this is a variable"
+
+echo $myVar
+
+Arguments
+
+
+echo $1 $2 $3 $4
+
+
+bash newScript cool dude me alvin notgonnawork - only 4 arguments
+
+
+
+Reading from stdin
+
+
+echo "Hello to my program!"
+
+echo "Enter your name please: "
+
+read name - command to read input and store input into variable name
+
+"" - parse value
+'' - literally read value
+
+echo "Your name is: $name"
+
+
+BUILDING USERNAME AND PASSWORD
+
+read -p "Username: " username
+read -sp "Password: " password    ==== s means silent. instead of * the password stays blank
+
+echo "Your username is $username"
+echo "Your password was $password"
+
+
+IF in bash
+
+read -p "Username: " username
+read -sp "Password: " password
+
+if  [ "$username" = "admin" ] && [ "$password" = "123" ]; then
+echo "Hey your credentials seem good!"
+fi      ===> to close the if block
+
+
+echo "Your username is $username"
+echo "Your password was $password"
+
+
+IF-ELSE
+
+
+read -p "Username: " username
+read -sp "Password: " password
+
+if  [ "$username" = "admin" ] && [ "$password" = "123" ]; then
+echo "Hey your credentials seem good!"
+else
+echo "Your login is invalid"
+fi
+
+# echo "Your username is $username"
+# echo "Your password was $password"
+
+
+LOGICAL OPERATOR AND EXIT STATUS
+
+echo $? - to check status code of the last command which ran
+
+status code 0 = success
+if no zeros = failed
+
+
+read -p "Username: " username
+read -sp "Password: " password
+
+if  [ "$username" = "admin" ] && [ "$password" = "123" ]; then
+echo "Hey your credentials seem good!"
+exit 0 --> added exit status codes
+else
+echo "Your login is invalid"
+exit 1
+fi
+
+
+&& - if first statement had status code of 0 (true/success) , proceed to 2nd statement
+|| - either
+
+
+IF-ELSE-IF-ELSE
+
+x=50
+
+if [ $x -lt 20 ]; then
+echo "yup"
+elif [ $x -gt 99 ]; then
+echo "yessir"
+else
+echo "im not sure"
+fi
+
+you can use -eq for equal
+
+
+FOR LOOP in BASH
+
+for i in 1 2 3            
+do
+echo "Welcome to codedamn! your number is $i"
+done
+
+output:
+Welcome to codedamn! your number is 1
+Welcome to codedamn! your number is 2
+Welcome to codedamn! your number is 3
+
+use a range:
+
+for i in {1..100}
+do
+echo "Welcome to codedamn! your number is $i"
+done
+
+FUNCTIONS in BASH
+
+create a function
+
+function greetUserAndCreateFile() {
+  echo "Hello user"
+  sleep 2 -- timeout for 2 seconds
+  echo "Hello Alvin"
+  sleep 2
+  echo "Creating file ./greeting"
+  sleep 1
+  touch greeting -- create empty file
+  echo "File created!"
+}
+
+
+greetUserAndCreateFile -- call function. similar to a command
+
+
+Used with variable
+
+function greetUserAndCreateFile() {
+  echo "Hello user"
+  sleep 2
+  echo "Hello $1" - variable
+  sleep 2
+  echo "Creating file ./greeting"
+  sleep 1
+  touch greeting
+  echo "File created!"
+}
+
+greetUserAndCreateFile "Alvin2"
+
+
+=============
+
+
+PACKAGE MANAGERS in a Linux Distribution
+
+
+sudo apt update 
+sudo apt install <package name>
+sudo apt remove <package name> - uninstall
+
+
+
+BASHRC File
+
+
+TOP COMMAND - to see all the processes running
+
+
+KILL command
+
+
+
+
+
+
+
+
+

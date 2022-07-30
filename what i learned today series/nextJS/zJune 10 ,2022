@@ -1,0 +1,56 @@
+June 10, 2022
+
+
+Doing Next JS Blog Project
+
+
+
+-key points:
+
+-using mark down to render data instead of html
+- installed react-markdown
+- installed gray matter
+
+
+-using the project filesystem as a storage for markdown files instead of using an external database
+
+
+-- tried to use getStaticProps in the Featured component so as not to pass props anymore, but it did not work
+
+because getStaticProps and getServerSideProps will only work in page components. not in regular components
+
+
+-in markdown can not explicitly put quotes for strings
+
+
+
+--- to get the data from markdown files, we use serverside code, path and fs to read directory and read files.
+--- put this in a function and run in getStaticProps or getServerSideProps
+--- cannot run in client side because of fs and path etc.
+
+
+params vs query -
+
+in url - query is usually key value pairs with ?
+
+?catergory=sports
+
+params are values after /
+
+---i think.
+
+
+in next js
+- in getStaticProps context object contains params property with slug
+- in getServerSideProps context object has the whole request object - both with query and params
+
+
+
+----plain javascript serverside code. calling functions using functions etc
+
+
+
+
+
+
+

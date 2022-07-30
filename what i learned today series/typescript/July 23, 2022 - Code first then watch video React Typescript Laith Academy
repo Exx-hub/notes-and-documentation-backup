@@ -1,0 +1,40 @@
+July 23, 2022
+
+
+types vs interfaces
+
+-prefer interfaces when possible
+-almost the same, but use interfaces for objects and types for other types
+
+
+PROJECT TIME!
+
+**state type for number input to show placeholder instead of 0
+**initial state of array of certain object type, why is empty array allowed?
+
+--found a gem => react TS cheat sheet
+https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets
+
+
+Code first then watch video React Typescript Laith Academy
+
+-- i think i actually know basic typescript now :) 
+
+lebron
+https://cdn.nba.com/headshots/nba/latest/260x190/2544.png
+caruso
+https://cdn.nba.com/headshots/nba/latest/260x190/1627936.png
+
+luka
+https://cdn.nba.com/headshots/nba/latest/260x190/1629029.png
+
+boban
+https://cdn.nba.com/headshots/nba/latest/260x190/1626246.png
+
+zach
+https://cdn.nba.com/headshots/nba/latest/260x190/203897.png
+
+components:
+guest card
+guest list
+form

@@ -1,0 +1,18 @@
+FEB 4-5 , 2022
+
+NPM MODULES
+
+install a package as a dev dependency
+
+npm i nodemon -D or npm i --save-dev
+
+npm init -y to yes all questions when doing npm init
+
+
+// EVENT EMITTERS
+
+03tut vscode logEvents.js
+
+FEB ?
+
+// WEB SERVER

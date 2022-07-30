@@ -1,0 +1,93 @@
+JANUARY 20, 2022
+
+console.log("PROCESS: ", process);
+
+to see the node process object
+
+much like the document object inthe browser
+
+window (browser) = global (node)
+
+document (browser) = process (node)
+
+exports object in node.
+
+destucturing exports object when importing or requiring
+
+NODE CORE MODULES
+
+const http = require("http");
+
+const server = http.createServer((req, res) => res.end("hello world"));
+
+server.listen(3000, () => console.log("server is listening!"));
+
+-- build in http module
+
+USING NPM PACKAGES
+
+npm init - create package.json for project
+
+-EXPRESS
+
+FILESYSTEM
+-fs
+
+
+single threaded
+asynchronous programmin
+non-blocking
+
+simple example:
+
+fs.readFile(fileName, (err, data) => {
+  if (err) {
+    console.log(err);
+  }
+
+  console.log(data.toString());
+});
+
+console.log("node js async programming!");
+
+
+-runs line by line but will console log line 51 first because it will leave line 43 
+to the event loop for the callback to handle it because it takes more time to readfile than
+to just console log something.
+
+synchronous example: 
+
+const data = fs.readFileSync(fileName);
+
+console.log(data.toString());
+
+console.log("i should come after the synchronous one");
+
+
+SECRETS OF UNDERSTANDING NODE JS:
+
+1. javascript environment browser/server
+2. understanding functions/ callback functions
+3. event loop
+4. ascynchronous (non-blocking) vs synchronous
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

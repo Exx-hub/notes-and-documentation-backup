@@ -1,0 +1,11 @@
+JANUARY 24, 2022
+
+CREATING NEW POST
+-use body parser or app.use(express.json()) to be able to parse the body coming from the request
+
+-use schema
+-model check
+view check
+controller check
+
+ 

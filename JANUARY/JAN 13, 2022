@@ -1,0 +1,60 @@
+january 13, 2022
+
+
+LINUX CLI FUNDAMENTALS
+
+what is linux
+kernel - hardware
+os tools
+distributions - ubuntu, alpine, kali linux ----each has purpose
+
+
+root = super user/access to everything
+
+# == root
+$ == other user
+
+SHELL - terminal interface , runs your commands
+
+COMMANDS:
+
+clear
+echo
+ctrl c 
+pwd - print working directory - check which dir you are in
+cd - change directory
+LS - list directories in current directory
+
+cat - read files in the terminal like opening a file in the GUI
+
+DETERMINING OS thru terminal:
+cat os-release === view os release in etc folder in /
+
+
+READING LONG LINES:
+less <space> <filename> - chunks big files to browse big file part by part
+
+CREATE FOLDER/DIRECTORY
+mkdir <directory name you want> - creates a folder in current folder you are in
+mkdir -p folder1/folder2/folder3 --- use p flag to create nested directories
+
+
+cd .. --- go back up one directory
+cd - --- go back previous directory you were in
+
+DELETE A FILE - rm <filename>
+DELETE A FOLDER - rm -r <dirname>  ==> -r (recursively) -rf == f = forcefully
+
+cp - copy
+touch - write a file
+
+mv - moves a file / rename a file
+
+FIND BINARY PATH:
+which ls / which echo
+
+
+
+
+
+

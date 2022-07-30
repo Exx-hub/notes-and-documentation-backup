@@ -1,0 +1,38 @@
+May 19,2022
+
+- udemy next js series and some of codedamn advanced nextjs
+
+what i learned today:
+
+-classes are not in react dev tools components
+-getServersideProps are run from the server before the html/view, and is run on every request
+
+-.env.local .development .production
+-need to restart app for env vars to take effect
+
+
+-to setup env variables - create .env.local file
+
+
+-if you need to access env vars in the browser/frontend -
+
+it should be name NEXT_PUBLIC_<variableName>
+
+ex.
+
+SECRET_VARIABLE=codedamn.com --- only accessible to the backend/server or in getServersideProps
+
+NEXT_PUBLIC_SECRET_VARIABLE=alvinacosta.com --- this can be accessed from the frontend/browser
+
+-need to restart the app whenever env vars are updated. since they are ran at build time. SSR
+
+
+.ENV.LOCAL VS .DEVELOPMENT VS .PRODUCTION
+
+-env.local will ovewrite .development if they have same variables 
+
+
+
+-next intro/refresher
+
+-nothing much for today

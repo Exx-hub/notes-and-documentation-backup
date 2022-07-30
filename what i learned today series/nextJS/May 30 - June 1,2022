@@ -1,0 +1,43 @@
+May 30 - June 1, 2022
+
+Next Project Time. 
+
+CS50
+basics of programming
+
+next js optimization
+
+Head Component
+
+Image Component for optimized images
+
+
+API Routes?
+
+next api routes vs express? hmm
+
+
+controlled vs uncontrolled input
+
+controlled - handled by react component with useState and onChange
+uncontrolled - handled by ref, getting ref.current.value
+
+
+JSON.stringify vs JSON.parse
+
+Stringify() is used to convert the Object into JSON, --- to send or write data to a JSON file/object
+Parse() is used to convert JSON into js Object --- to convert json to useable object in JS or client
+
+
+stringify() takes a JavaScript object and then transforms it into a JSON string. JSON. parse() takes a JSON string and then transforms it into a JavaScript object.
+
+
+status 201 - request was successful and a resource has been created.
+status code 304 - requested resource has not been modified since last making a request, so browser is using previously 
+		  cached version/data to speed up request handling.
+		  
+		  - if for example getting data from a database, and new data is present, status should be 200.
+		  
+example - fetching list of users that you previously fetched. (3 users for example.) if you fetch again, and there are still only 3 users, status would be 304 since browser knows that resource did not change.
+but when a new user is added in the database, making it 4 users, and you fetch another request, you get 4 users
+and 200 status code.

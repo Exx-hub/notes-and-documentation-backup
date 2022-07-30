@@ -1,0 +1,268 @@
+Authentication in NextJS:
+
+-what
+-Next-auth library
+-Authenticating with github - example only but can use other platforms like google, facebook etc
+-sign in , sing out and securing app
+-how to work with database like mongodb
+
+
+User
+Identity - verifies who a user is - Authentication
+Access   - verifies what permissions the user has - Authentication
+
+Client-side auth
+Server-side auth
+Api routes auth
+
+User Data
+
+No need to persist? Auth services like github , facebook etc to ensure user is authenticated
+
+Need to persist? - Database
+
+Library = NextAuth.js
+
+1. npm i next-auth
+2. configure next-auth with a github auth provider
+   -api folder - create auth folder - create catch all route [...nextauth].js
+   - import nexth auth library and Providers from next-auth/Providers
+   -export default nextauth and pass an object
+   
+   
+import NextAuth from "next-auth/next";
+import GitHubProvider from "next-auth/providers/github";
+
+export default NextAuth({
+  providers: [
+    GitHubProvider({
+      clientId: "",
+      clientSecret: "",
+    }),
+  ],
+});
+
+
+3.register app to dev settings OAuth apps in github - to use github as auth
+4. get client details and save as env to use in NextAuth providers object
+
+GITHUB_ID=acbdbf2e32109207c218
+GITHUB_SECRET=15602acd224ea26c78bac77fb0fdb2006199940d
+
+
+import NextAuth from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
+
+export default NextAuth({
+  providers: [
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+  ],
+});
+
+
+-add signin and signout as onClick events in your buttons or navlinks
+
+and use next-auth/react built in signin and signout api
+
+import { signIn, signOut } from "next-auth/react";
+
+
++++CLIENT-SIDE AUTHENTICATION+++
+-useSession hook from next-auth
+ -to check if someone is signed in in the nextauth library
+ 
+ updated version:
+ 
+ 
+in _app.js
+
+wrap everything with session provider
+
+import { SessionProvider } from "next-auth/react";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <SessionProvider>
+        <Navbar />
+        <Component {...pageProps} />
+      </SessionProvider>
+    </>
+  );
+}
+
+export default MyApp;
+
+--then able to use useSession in component
+
+import { signIn, signOut, useSession } from "next-auth/react";
+
+const { data: session, status } = useSession();
+
+-to see session and status of login
+
+
++++SECURE PAGES CLIENT SIDE+++
+-make a page available only to those authenticated
+
+use getSession()
+
+import { useState, useEffect } from "react";
+import { getSession, signIn } from "next-auth/react";
+
+function Dashboard() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const securePage = async () => {
+      const session = await getSession();
+
+      if (!session) {
+        signIn();
+      } else {
+        setLoading(false);
+      }
+    };
+
+    securePage();
+  }, []);
+
+  if (loading) {
+    return <h2>LOADING</h2>;
+  }
+
+  return <h1>Dashboard Page</h1>;
+}
+
+export default Dashboard;
+
+
+
++++Server Side Authentication+++
+-authentication in the getServerSide function
+
+-in client side auth, we determine what ui to render depending on session, this determines what props to send to the component
+
+
+import { getSession } from "next-auth/react";
+
+function Blog(props) {
+  console.log(props);
+  return <div>Blog Page</div>;
+}
+
+export default Blog;
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  return {
+    props: {
+      data: session ? "List of personalized blogs" : "list of free blogs",
+    },
+  };
+}
+
+
+study further session esp in server side and pageProps session object
+
+
+
++++Securing pages server-side+++
+
+in getServerSideProps -
+
+// if session does not exist
+  if (!session) {
+    return {
+      redirect: {
+        destination: `/api/auth/signin?callbackUrl=http://localhost:3000/blog`,
+        permanent: false,
+      },
+    };
+  }
+
+
+// otherwise pass props to page component
+ return {
+    props: {
+      session,
+      data: session
+        ? "List of personalized blogs"
+        : "Free list of blogs for everyone",
+    },
+  };
+  
+  
+  
++++SECURING API ROUTES+++
+
+basic implementation ---
+
+import { getSession } from "next-auth/react";
+
+const handler = async (req, res) => {
+  const session = await getSession({ req: req });
+
+  if (!session) {
+    res.status(401).json({ error: "User unauthenticated" });
+  } else {
+    res.status(200).json({ message: "Success", session });
+  }
+};
+
+export default handler;
+
+
+
++++CONNECTING TO A DATABASE+++
+
+setup database in mongodb
+-get connection string and place in env
+-install mongodb in app
+-in nextauth catch all file, add database property below providers and value of connection string in env
+-add another property session: {jwt: true} - to enable jwt for session management
+
+
+
+NEXTAUTH_URL error. watch for other tutorials about this. next auth connection to a database
+
++++CALLBACKS+++
+-also this one find other resources
+
+
+
+
+======AUTHENTICATION SUMMARY=================
+next-auth pacakage
+config next-auth library - github as example
+signin and signout
+client side authentication using useSession
+securing clientside, serverside and api routes - getSession
+Provider
+connect to a database****
+callbacks****
+
+
+---go through next-auth documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+July 29, 2022
+
+
+NEXT JS with TS
+
+
+*InferGetStaticPropsType
+The type InferGetStaticPropsType, provided by Next.js, allows us to set the type on the method getStaticProps. It will infer the type defined on the props returned by getStaticProps.
+
+*same as InferGetServerSideProps
+
+==== to get the type of fetched data
+
+parts that need types in nextjs:
+-getStaticProps props passed to component
+-useState
+-functions
+
+
+
+converting an existing next js into TS
+
+npm install next@latest -- if next app was created long ago
+npm upgrade react@latest react-dom@latest
+
+npm install --save-dev typescript @types/react
+ npm install --save-dev @types/react
+ npm install --save-dev @types/node
+ 
+ 
+"moduleResolution": "Node",
+
+1. AppProps in app.tsx
+2. InferGetServerSideProps<typeof getServerSideProps> === also same with getStaticProps
+3. NextApiRequest and NExtApiResponse
+4. type of props passed 
+5. NextPage in index 
+ 
+ 
+============================================
+creating a new next js with ts app:
+
+npx create-next-app@latest --ts
+or
+npx create-next-app . --typescript

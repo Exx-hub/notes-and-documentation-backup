@@ -1,0 +1,119 @@
+typesrcipt
+
+npm i -g typescript
+
+create a file
+- index.ts
+
+write some javascript
+
+then compile
+- tsc index
+
+--- this will compile and create index.js
+
+if you want to specify the name of created js file
+-tsc index.ts --outfile file-name.js
+
+If you want TSC to compile your code automatically on a specific file, whenever you make a change, add the "watch" flag:
+
+tsc index.ts -w
+
+To compile everything and watch for changes: (watches all ts files and automatically compiles them)
+
+tsc -w
+
+// create ts config file
+-this should be in root directory of your project
+
+=> tsc --init
+
+
+
+// "type annotation" or a "type signature"
+
+let id: number = 5;
+let firstname: string = 'danny';
+let hasDog: boolean = true;
+
+let unit: number; // Declare variable without assigning a value
+unit = 5;
+But it's usually best to not explicitly state the type, as TypeScript automatically infers the type of a variable (type inference):
+
+let id = 5; // TS knows it's a number
+let firstname = 'danny'; // TS knows it's a string
+let hasDog = true; // TS knows it's a boolean
+
+hasDog = 'yes'; // ERROR
+
+
+We can also set a variable to be able to be a union type. A union type is a variable that can be assigned more than one type:
+
+let age: string | number;
+age = 26;
+age = '26';
+
+PRIMITIVE and REFERENCE
+
+
+ARRAYS
+
+also need to specify what type
+eg:
+let stringArray: string[] = ["alvin","lop"]
+let numberArray: number[] = [3,1,4,6]
+
+union is also possible
+let unionArray: (boolean| number | string | undefined)[] = [true,false,1,"me", undefined]
+
+TS infers type automatically. no need to indicate type
+
+let string = "alvin"; // does not need to be initially typed cause TS will infer that this is type string
+// string = 2 // error
+
+--- this is called TYPE INFERENCE
+
+
+*There is a special type of array in typescript called TUPLE
+-this array should follow type and order
+
+
+// OBJECTS IN TS
+let objectTest: {
+    name: string;
+    age: number;
+    isProgrammer: boolean;
+} 
+
+objectTest = {
+    name: "alvin",
+    age: 34,
+    isProgrammer: true
+}
+
+objectTest.name = "me"
+
+usage of INTERFACE for objects if multiple object have same properties and value types
+
+
+  interface Student {
+    name: string;
+    age: number;
+    withHonors: boolean
+  }
+
+  let student1: Student = {
+      name: "alvin",
+      age: 24,
+      withHonors:true
+  }
+
+  let student2: Student = {
+      name: 'lop',
+      age: 28,
+      withHonors: false
+  }
+
+
+***********STOPPED AT FUNCTIONS
+

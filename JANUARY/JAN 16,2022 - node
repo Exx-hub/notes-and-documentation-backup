@@ -1,0 +1,28 @@
+JAN 15, 2022 NODE JS
+
+DENO VS NODEJS
+
+deno - alternative to node. also a runtime environment
+
+COMMON JS
+
+1. require - import
+2. module.exports
+
+
+fs.writeFile and fs.writeFileSync - async and sync
+
+further study on fs module
+
+.mjs = module that uses e6 scripts like import and export
+.cjs = uses common js
+
+.js will be what is defaultly set
+
+import , export files
+
+
+Raw HTTP Server
+-http module , but we can use express for this
+
+intro to express

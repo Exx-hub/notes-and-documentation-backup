@@ -1,0 +1,58 @@
+NEXT JS LEARNING SO FAR:
+
+1. ROUTING -
+
+- file based routing
+- nested routing 
+- dynamic routing using [slugs]
+- nested dynamic routing
+- catch-all routes -- [...params].js --- study further!!
+
+-Link Component for Routing
+-programmatical routing - useRouter .push .replace
+
+
+extra notes:
+- useRouter hook built in with next js
+- using of dynamic parameter passing to dynamic page
+- _app.js is parent component rendered
+- remembering how layout is used
+
+****PAGES VS COMPONENTS
+ page - use as a route
+ component - not a route but reusable smaller 
+
+
+2. PRE-RENDERING
+
+-by default next pre-renders every page in the app
+- this means nextjs generates the html in advance instead of it all done client side javascript.
+
+- in React server sends emtpy html with root and and client runs js (hydration) then app becomes interactive
+
+
+- in nextjs server generates html and send to client. then js runs (hydration) making the app interactive.
+
+-Why pre-render?
+ -improves performance
+ -html already generated - loads faster
+ -helps with SEO
+ 
+Nextjs supports 2 types of pre-rendering:
+1. Static Generation
+2. Server-side rendering
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

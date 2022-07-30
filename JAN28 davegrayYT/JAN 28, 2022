@@ -1,0 +1,23 @@
+JANUARY 28 - DAVE GRAY YT NODE FULL COURSE
+
+
+NODE JS vs VANILLA JS
+1. Node runs on the server - not in a browser (backend not frontend)
+2. console is in terminal window
+3. node has global object instead of window object
+4. has common core modules - os, path, fs
+5. CommonJs modules instead of es6 -require*
+6. Missing some JS aPIs like fetch
+
+READ AND WRITE FILES
+const fs = require('fs')
+
+fs.readFile
+
+
+node is asynchronous, non-blocking, single threaded
+
+-can control the order of operation by putting succeeding functions inside callbacks
+- but be careful of callback hell
+
+- handle with ASYNC AWAIT

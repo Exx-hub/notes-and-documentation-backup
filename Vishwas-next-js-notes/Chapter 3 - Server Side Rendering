@@ -1,0 +1,52 @@
+ ****************
+ SERVER-SIDE RENDERING:
+ 
+ 
+ some problems with static generation:
+ -cannot fetch data at request time => stale data 
+ -cant get access to incoming requests => personalization of feed based on user (twitter)
+   -you could do it clientSide with useeffect but that means you miss out on SEO again.
+ -cannot get data that is user specific and pre-render a page
+ 
+ 
+SSR
+- next allows you to pre-render a page not at build time but at request time
+- html is generated for every incoming request
+- form of pre-rendering where html is generated at request time.
+- ssr is requuired when you need to fetch data per request and when you need to fetch personalized data keeping in mind SEO
+
+
+HOW??
+-how does next make it possible to fetch data at request time
+-how it gets personalized data using incoming request
+
+
+ssr is slower than ssg because data is fetched first, so use ssr only if necessary
+
+getServerSideProps:
+-will be called by the server on every request
+
+1. runs only on the server side - will never run client side, wont be included in your js bundle
+2. you can write code directly in getServerSideProps like fs module
+3. is allowed only in a page, not in a regular component - used only for pre-rendering and not client side data fetching.
+4. should return an object and should containt a props key which is also an object - this props object is then passed to page component for data fetched to be available to component
+5. will run at request time
+
+
+SSR with dynamic parameters---
+
+
+
+
+?????when to use serverside props vs staticprops????
+ https://medium.com/eincode/next-js-data-fetching-getstaticprops-vs-getserversideprops-fcbf43d0ccac
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

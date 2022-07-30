@@ -1,0 +1,10 @@
+FEB 10, 20200
+
+EXPRESS JS
+
+app.get("^/$|index(.html)?", (req, res) => {
+  // res.sendFile("./views/index.html", { root: __dirname });
+  res.sendFile(path.join(__dirname, "views", "index.html"));
+});
+
+--accepts regex to display index if / or with /index.html and just index 

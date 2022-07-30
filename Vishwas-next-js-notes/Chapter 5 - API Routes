@@ -1,0 +1,89 @@
+API ROUTES -
+
+nextjs is a full stack framework.
+write FE code in react and also write apis that can be called by front end code
+api routes allow you to create restful endpoint as part of your next js app
+
+wihtin pages folder need to create folder called api - define all apis within this folder
+you can add business logic without need to write any additional custom server code and config api routes
+
+
+-create apis in under api folder in pages folder.
+-works automatically as api routes.
+-each api route must have a exported default handler function
+
+-use api routes just like a node server. 
+
+
+GET AND POST DELETE PATCH
+
+export default function handler(req, res) {
+  if (req.method === "GET") {
+    res.status(200).json(comments);
+  } else if (req.method === "POST") {
+    const comment = req.body.comment;
+    const newComment = {
+      id: Date.now(),
+      text: comment,
+    };
+
+    comments.push(newComment);
+    res.status(201).json(newComment);
+  }
+}
+
+
+Dynamic api routes using req.query -- localhost:4000/api/comments/:commentId
+-just like in node js
+
+
+
+
+-so basically, api get called depending on url. and one url runs one handler function just like file based routing.
+
+api/comments will go to comments folder under api. same with dynamic routing. use of [slugs].
+
+very similar to node js. hadnler function accepts req and res.
+also has properties like req.query for dynamic routing. req.query
+
+
+create condition to check what type of request is incoming.
+
+req.method === "GET" => do something
+else if req.method === "POST" => do something.
+
+does this for each route. http requests for the specific route. connect db here.
+
+
+
+CATCH ALL ROUTES
+-same with file based routing = [...slug] or [[...slug]] (optional catch all)
+
+
+
+-**** You cannot call your own api in getStaticProps paths and serverSideProps
+
+
+You should not fetch an API Route from getStaticProps or getStaticPaths . Instead, write your server-side code directly in getStaticProps or getStaticPaths (or call a helper function). Here's why: getStaticProps and getStaticPaths run only on the server-side and will never run on the client-side.
+
+
+
+***API ROUTES SUMMARY***
+-API routing mechanism is similar to page based routing mechanism
+-APIs are associated with a route based on their file name
+-Every API route exports a default function typically named as handler function
+-handler function receives req and res as parameters
+-cater to differenct request types like get post delete patch using req.method
+-dynamic api routes
+-catch all api routes
+- we should not call our own api route for pre-rendering content
+
+
+
+
+
+
+
+
+
+
