@@ -1,0 +1,247 @@
+Aug 26, 2022
+
+
+useSWR and React Query VISHWAS
+
+
+
+useSwr - fetching data on component mount
+
+
+react query - more features and state management
+
+
+
+RECAP of TOPICS:
+-Cache Time
+-Stale Time
+-refetchOnMount
+-refetchOnWindowFocus
+-Polling refetchInterval
+-UseQuery on Click => enabled: false
+-onSuccess onError
+-Data transformation => select
+
+
+•React Query Codevolution
+
+
+steps in using:
+
+import QueryClientProvider and QueryClient
+
+create a new queryClient instance
+wrap your app with QueryClientProvider and pass created queryClient as client
+like so
+
+
+const queryClient = new QueryClient()
+
+function App() {
+  return (
+    // Provide the client to your App
+    <QueryClientProvider client={queryClient}>
+      <Todos />
+    </QueryClientProvider>
+  )
+}
+
+now you have access to every hook react query provides...
+
+
+
+•fetching data with useQuery:
+-import useQuery in the component you where you will use it
+
+and use as a hook
+ const { data, isLoading } = useQuery("super-heroes", () => {
+   return axios.get("http://localhost:4000/superheroes");
+ });
+
+
+similar to how tofetch with useSWR
+
+
+1st argument is the query key
+2nd argument is the fetcher function
+3rd argument is configuration object to tweak hook behavior
+---hook returns values that can be destructured from it, to use in the component jsx
+
+
+
+•React Query Dev Tools
+
+import in App.js
+
+import { ReactQueryDevtools } from "react-query/devtools";
+
+then insert component just before the closing QueryClientProvider-- can add some props
+
+<ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+
+====> a react query icon will popup in the position you set
+
+
+•Query Cache - default value is 5 mins
+-every query result is cached for 5 mins. and react query relies on that cache for subsequent requests
+
+-then  a query is ran in the background, to check if data did not change, if it did, once fetching of new data is done, the ui is automatically updateted
+
+--example is a list of users is already displayed since data is cached, but in the background an updated list is fetched and displayed as soon as it is fetched.
+
+
+query cache
+
+-the first time useQuery is fired for a specific api call, isLoading set to true, and a network request is sent to fetch data
+-when the request is completed, data returned is cached using the "query key" and "fetcher" as unique identifiers.
+
+- then when you go to a different page, then revisit the page with useQuery, react query will check if there is cached data
+- since there is cached data, that cached data is immediately returned without setting isLoading to true.
+- this is why there is no loading text for subsequent requests
+- but since react query knows that data from api might have updated, so it does a background re-fetch. (isFetching)
+
+cacheTime - duration before data is removed / garbage collected => default is 5 minutes
+
+
+cached data => then background re-fetch
+
+
+
+
+•Stale Time
+-duration set to prevent a background refetch, allows the use of cached data, as per the set stale time duration before refetching...
+
+----reduce number of times / network requests for data that doesnt change too often
+
+Stale Time
+ - duration set to prevent background re-fetch.
+ - sets duration where data is considered fresh hence does not need re-fetching.
+ - when time set lapses, data is then stale. a background re-fetch will be triggered when you visit the page again
+ 
+ - default is 0
+ 
+ -for example stale time is set to 30 seconds.
+ 1. you visit the page, data is fetched. data is considered fresh and even if you go back and forth to this page and another,
+    there will be no background re-fetch triggered (30 seconds.). cached data is used
+ 
+ 2. after 30 seconds, fetched data is considered stale. so if you go to a different page, then come back,
+    cached data is still used but will trigger a re-fetch to get fresh data. 
+ 
+ 3. there will still be no loading because there is cached data, but a re-fetch will be triggered.
+ 
+ 
+ 
+ Aug 28, 2022
+
+
+React Query Vishwas
+
+
+••Refetch Defaults
+
+•refetchOnMount
+--will refetch data on mount if data is stale
+--default is true.
+--so this is always done by default, background re-fetch.
+-except if you set a stale time. wherein, data remains fresh for a duration. and refetch will only be done if data becomes stale
+- values are true false and "always"
+
+"always" - will always refetch on mount even if data is still fresh
+
+•refetchOnWindowFocus
+-when your tab loses focus and gains focus again, a background re-fetch is done
+-this is true by default
+---so when you switch your tab to youtube, then at the same time, remote server data changes, when you switch back to your page 	tab, a background re-fetch is triggered.
+---take into consideration staleTime
+--- background re-fetch will only trigger if data is stale. no re-fetch will trigger yet if data is fresh for higher staletime 	setting 
+
+"always" - will always refetch on tab focus even if data is still fresh
+
+
+••Polling
+-fetching data at regular intervals..
+--useable for real time data like current price of stocks
+
+---refetchInterval
+--default is false.
+-- overrides staletime, will refetch every 5 seconds if this is set to 5 seconds even if data is fresh with staletime config
+-- refetch is paused if page is not focused.
+-- another config is set if you dont want to pause fetching even if not focused
+==> refetchIntervalInBackground
+
+
+
+••UseQuery on Click
+- in the previous examples, useQuery is fired on component mount
+- get request is fired as soon as the window is mounted or focused
+
+
+
+1. inform useQuery not to fire when component mounts, disable fetching on mount with enabled flag set to false
+	-enabled: false
+2. destructure "refetch" from useQuery hook. and use this on your event handler like your onClick of button
+
+
+
+const { data, isLoading, isError, error, isFetching, refetch } = useQuery(
+    "super-heroes",
+    fetchSuperHeroes,
+    {
+      enabled: false,
+    }
+  );
+
+
+<button onClick={refetch}>Fetch Heroes</button>
+
+
+---even if you put cacheTime to zero, will still cache previous data. and will not set isLoading to true
+
+
+••Success and Error Callbacks
+-side effects you want to do when a query completes 
+---eg. opening a modal, navigating to a different page, displaying notifs
+
+1. create your functions for success and for fetching error.
+--add onSuccess and onError in options object of useQuery
+
+--you can use the same name of onSuccess and onError
+
+eg. 
+
+
+  const onSuccess = (data) => {
+    console.log("Perform side effect on fetching success");
+  };
+
+  const onError = (err) => {
+    console.log("Perform side effect on fetching error");
+  };
+
+
+  const { data, isLoading, isError, error, isFetching, refetch } = useQuery(
+    "super-heroes",
+    fetchSuperHeroes,
+    {
+      onSuccess,
+      onError,
+    }
+  );
+
+--- if fetching success, onSuccess callback will be triggered and vice versa (onError)
+
+---automatically passes fetched data as argument to onSuccess function and error to onError
+
+
+
+••Data Transformation
+-- by adding the select property in the config, the data from the api backend can be transformed.
+-- the "data" desctructured from useQuery will follow what you set in the select option. like getting only names instead of whole response object. 
+
+
+
+
+
+
+ 
+

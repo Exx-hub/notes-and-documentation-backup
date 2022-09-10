@@ -1,0 +1,273 @@
+React Query Vishwas Part 2
+
+
+
+RECAP OF ITEMS:
+-Custom query hook
+-Query By Id
+-Parallel Queries
+-dynamic parallel queries
+-Dependent Queries
+-Initial Query Data
+-Paginated Queries
+-Infinite Queries
+-Mutations
+
+!!!!!!!!!!!!!!!!!!!!1 watch out for v4, this tutorial is v3 so you need to check differences in versions
+
+
+••Custom query hook
+-did a custom hook that fetches data, much like a useAxios hook. that is reusable.
+-converted RQsuperheroes into one that uses the custom hook
+
+
+***this is useful and doable but dont complicate it too much. :)
+
+
+
+••Query By Id
+- similar to useEffect but using useQuery
+
+-if you need to use id passed to url for api call, it is automatically passed to fetcher function
+- instead of an arrow function and manually passing id to fetcher function, just pass the fetcher function
+- in its parameters, you can destructure a queryKey which is an array that contains 1) the key 2) the id passed
+// and id can be accessed as 2nd item in querykey array
+
+
+const fetcher = ({ queryKey }) => {
+  console.log(queryKey[1]);
+  const heroId = queryKey[1];
+  return axios.get(`http://localhost:4000/superheroes/${heroId}`);
+};
+
+export const useFetchHeroDetail = (heroId) => {
+  const { data, isLoading } = useQuery(["hero-detail", heroId], fetcher, {
+    staleTime: 5000,
+  });
+
+  return { data, isLoading };
+};
+
+
+
+
+••Parallel Queries
+--calling multiple apis to fetch needed data. 
+- as simple as invoking useQuery multiple times
+
+
+ const friendsQuery = useQuery("friends-parallel", friendsFetcher, {});
+ const superheroQuery = useQuery("superhero-parallel", superheroFetcher, {});
+
+
+
+••Dynamic Parallel Queries
+
+// watch out for v4, this tutorial is v3 so you need to check differences in versions
+// syntax is a little different  
+  
+  const userQueries = useQueries(
+    heroIds.map((id) => {
+      return {
+        queryKey: ["dynamic-heroes", id],
+        queryFn: () => fetcher(id),
+      };
+    })
+  );
+
+
+
+
+••Dependent Queries
+--- fetch data from multiple apis sequentially, one after the other rather than parallel.
+--- example is one query that is dependent to the result of a preceding query
+
+
+Dependent (or serial) queries depend on previous ones to finish before they can execute. 
+To achieve this, it's as easy as using the ENABLED option to tell a query when it is ready to run
+
+
+  // fetch user first by email
+  	  const { data: user } = useQuery("dep-user", () => fetchUSerByEmail(email));
+
+  // before user fetch this is null but gets value after fetching success
+  	  const channelId = user?.data.channelId;
+
+  // after user fetch success, channelId becomes non-null, which sets enabled to true, which triggers
+  // the query to fetch the channel by channelId
+	  const { data: channel } = useQuery(
+	    "dep-channel",
+	    () => fetchByChannelId(channelId),
+	    {
+	      enabled: !!channelId,
+	    }
+	  );
+	  
+
+
+
+••QueryKey - If your query function depends on a variable, include it in your query key
+
+ex. 
+
+const { data: user } = useQuery(["dep-user", email], () =>
+    fetchUserByEmail(email)
+  );
+  
+// this query fetches data based on email, and that email is used in your query function. hence adding it to the query key   is  needed  
+  
+
+
+••Initial Query Data
+- useQueryClient
+--- when displaying details for a single item from a list of items, like a hero detail page of clicked hero from a hero list,
+--- instead of qeurying specific hero details when clicked and fetching details for that specific hero,
+--- you can use details from hero list previously fetched.
+--- for example, when clicking batman and expecting details for batman, since batman is part of the fetched hero list on the hero list page, there is already info available for batman. this is the purpose of initial query data.
+--- this eliminates having to show a loading or spinner. and displaying info of specific hero.
+-- but on the background you still do a fetch. 
+
+
+export const useFetchHeroDetail = (heroId) => {
+  const queryClient = useQueryClient();
+  const { data, isLoading } = useQuery(["hero-detail", heroId], fetcher, {
+     staleTime: 5000,
+     initialData: () => {
+      const hero = queryClient
+        .getQueryData("super-heroes") // this key must be the same as the queryKey of list of superheroes
+        ?.data?.find((hero) => hero.id === parseInt(heroId));
+
+	      if (hero) {
+		return { data: hero };
+	      } else {
+		return undefined;
+	      }
+	    },
+	  });
+
+  return { data, isLoading };
+};
+
+
+
+••Paginated Queries
+-- keep previious data 
+
+-maintain data from previous fetch while new data is being requested. avoid jumping in and out of loading and fetching state
+-when querying paginated data
+
+-create fetching loading text for isFetching while new data is being fetched. this is different from isLoading.
+- this keep previous page data on screen, while data for next page is being fetched.
+
+https://tanstack.com/query/v4/docs/guides/paginated-queries#better-paginated-queries-with-keeppreviousdata
+
+
+
+••Infinite Queries
+- new hook => useInfiniteQuery
+
+-also need "getNextPageParam" property in the options of useInfiniteQuery
+
+--- infinite query different in v4
+
+---able to destructure hasNextPage and fetchNextPage	and isFetchingNExtPage
+
+
+
+**kinda confusing. get back to this if needed
+
+//  fetcher function user pageParam from getNextPageParam, to know if there another page/s to fetch
+// data from useInfiniteQuery, is an array with pageParam and pages array.
+// in pages array are data fetched for every pageParam and pages array increases as you fetch more.
+// now in mapping, since pages array holds the data, you must map pages array first and map each group in the pages array
+
+
+
+
+
+••Mutations
+-update delete or create data 
+-post patch put
+
+---another hook is used for this => useMutation hook
+
+1. create mutation function
+const addSuperHero = (heroDetails) => {
+  return axios.post("http://localhost:4000/superheroes", heroDetails);
+};
+
+---mutation function automatically accepts argument passed to mutate hook. 
+---that's why no need to pass it in the useMutation call.
+---addSuperHero automatically accepts what is passed in addHero (step #4)
+
+2. create hook that uses useMutation
+export const useAddSuperHero = () => {
+  return useMutation(addSuperHero);
+};
+
+3. invoke hook in component
+  const { mutate: addHero } = useAddSuperHero();
+
+
+4. use in event handler
+  const handleCreate = () => {
+    const hero = { name, alterEgo };
+    // mutate(hero)
+    addHero(hero);
+  };
+
+
+
+****https://www.youtube.com/watch?v=NYCG1o38oEQ&list=PLC3y8-rFHvwjTELCrPrcZlo6blLBUspd2&index=21
+
+
+
+••Query Invalidation
+--automatically re-fetch data when mutation succeeds
+
+
+--useMutation can also have an options object.
+-- to use query invalidation, initialize onSuccess property in the option object
+
+export const useAddSuperHero = () => {
+  const queryClient = useQueryClient();
+  return useMutation(addSuperHero, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('super-heroes')
+    }
+  });
+};
+
+
+
+
+••Handling Mutation Response
+
+
+export const useAddSuperHero = () => {
+  const queryClient = useQueryClient();
+  return useMutation(addSuperHero, {
+    onSuccess: (data) => {
+      // this data is the data returned by useMutation hook.
+      queryClient.setQueryData("super-heroes", (oldData) => {
+        return {
+          ...oldData,
+          data: [...oldData.data, data.data],
+        };
+      });
+    },
+  });
+};
+
+
+••Axios Interceptor
+
+--https://www.youtube.com/watch?v=Cyyh9G5E6II&list=PLC3y8-rFHvwjTELCrPrcZlo6blLBUspd2&index=25
+
+
+
+***i realized that i should focus on react query. just passing through to be somewhat familiar.
+---if needed in a project, i should at least know the basics and be quick in picking it up as needed.
+--- so no need to put much focus on react query. general conccepts better to master. or react in general.
+
+

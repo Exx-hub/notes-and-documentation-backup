@@ -1,0 +1,32 @@
+August 9, 2022
+
+React Best Practices to write better code
+
+
+Good Folder Structure
+Maintain a structured import order
+Learn different component patterns
+Use a linter and follow its rules
+Test your code
+Integrate Typescript (or at least use default props and prop types)
+Use lazy-loading / code splitting (webpack bundling)
+Extract reusable logic into custom hooks
+Handle errors effectively
+Keep your key prop unique across your whole app
+
+cherries on top:
+Implement the useReducer hook earlier
+ Use shorthand for boolean props
+Avoid curly braces for string props
+Erase non-html attributes when spreading props
+Use Snippets tsrpfc rafce rfce etc
+Write a fragment when a div is not needed
+ Integrate self closing tags when no children are needed
+ Follow common naming conventions
+Use camelCase for JavaScript data types like variables, arrays, objects, functions, and so on
+
+
+
+
+
+
