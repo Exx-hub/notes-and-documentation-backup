@@ -1,0 +1,70 @@
+Aug 12, 2022
+
+React Testing Crash Course - Traversey feat Techbase
+
+
+
+test priority:
+
+1. High Value Features - most important thing/things in an app or site
+2. Edge cases in high value features
+3. Things that are easy to break
+4. Basic React component testing
+ -user interaction
+ -conditional rendering
+ - utils / hooks 
+ 
+ 
+ ARRANGE -- arranging things, rendering components and props
+ ACT     -- do something like fireEvents
+ ASSERT  -- test
+ 
+ 
+ ---apply to own tests
+ --- use testing gecko extension
+ 
+ UNIT TESTING --- testing single components or functions
+ 
+ 
+ screen.debug() --- both to check the structure
+ 
+ this renders the html in the component?
+ 
+ screen.getByRole("") --- both to check the structure
+ 
+ to be able to view all available roles in the component
+ 
+ 
+ --check for the opposite first.
+ -if checking for a disabled button, check for the opposite first. check if it is enabled.
+ -then correct the error 
+ 
+ 
+ 
+userEvent vs fireEvent? TEST this ---- use userEvent over fireEvent where possible
+
+
+
+INTEGRATION TESTING --- testing combined components/functions to check how they work with each other
+--like testing how a user will use the app
+--flow of actions a user will do when using the app
+-- not really about combining unit tests into one.
+-- flow should be related 
+
+
+END to END Testing using cypress --- first look.
+-see if you need to learn cypress now or not just yet.
+-i think jest and RTL would suffice for now.
+
+
+
+How to Mock api calls in jest
+???
+
+
+
+
+
+
+
+

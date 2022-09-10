@@ -1,0 +1,81 @@
+Aug 15 , 2022
+
+React Testing Jack Herrington
+
+**still confused with mocking.
+
+
+mocking onClick functions - but somehow useless i think? its like testing if the button works HAHA
+
+test("should handle click event", () => {
+  const mockClick = jest.fn();
+  render(<Button onClick={mockClick} title="Add an Item" />);
+
+  const btnElement = screen.getByRole("button", { name: "Add an Item" });
+
+  userEvent.click(btnElement);
+  fireEvent.click(btnElement);
+
+  expect(mockClick).toHaveBeenCalledTimes(2);
+});
+
+
+
+API TESTING - CLIENT SIDE
+--- answer = msw library as stated in the jest docs
+
+
+https://www.npmjs.com/package/msw
+https://testing-library.com/docs/react-testing-library/example-intro/#mock
+
+
+--had an issue where mock api call returns nothing. saw answer on stack overflow
+
+
+https://stackoverflow.com/questions/72164410/mock-service-worker-returns-empty
+
+
+--dunno why jack herringtons example does not work.
+--added await for in the expect block and it worked.
+
+
+
+TESTING Hooks
+renderHook
+act
+
+import { act, renderHook } from "@testing-library/react";
+import { useCounter } from "../components/useCounterHook";
+
+test("should increment", () => {
+  const { result } = renderHook(() => useCounter()); // its like calling the hook, returns what the hook returns
+
+  console.log(result);
+
+  act(() => {
+    result.current.increment(); // act is doing something, like calling functions from the hook
+  });
+
+  expect(result.current.count).toBe(1); // asserting a value or changed value from hook
+});
+
+
+
+
+
+REACT Router - using link in a component and testing that component
+
+mockedHome = 
+
+<Router>
+<Home />
+</Router>
+
+since when you are testing components in isolation, 
+if that component uses a Link from react router, it will cause an error
+saying that a Link cannot be used outside a Router.
+
+this is because you are testing the component in isolation.
+unlike in your project set up that it is wrapped in a router.
+
+this causes the Link error. so you need to mock the Component by wrapping a router.

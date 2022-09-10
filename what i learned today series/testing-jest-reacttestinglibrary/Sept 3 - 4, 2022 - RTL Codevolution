@@ -1,0 +1,137 @@
+September 3 - 4, 2022
+
+RTL Codevolution
+
+--tests are code that throws an error if expected output does not match the actual output
+ 
+ 
+ 1st section recap:
+ 
+ -what is automated tests
+ -types of automated tests
+ -Jest vs RTL
+ -Anatomy of a test
+ -TDD
+ 
+ 2nd section:
+ -watch mode options
+ -grouping with describe block
+ -filename conventions
+ -code coverage
+ -assertions
+ 
+ 3rd Section
+ RTL Queries
+ 8 Query Methods
+ Order of Prio of methods
+ 
+ 
+ 
+ test.only - to test only this test / fit if using it instead if test
+ test.skip - to skip this test / xit if using it instead if test
+ 
+ 
+ --files that are tested:
+ 
+.test.ts .test.tsx
+ 
+.test.js .test.jsx
+ 
+.spec.js ts tsx jsx
+
+or files inside __tests__ folder 
+ 
+
+
+code coverage
+ "coverage": "npm test -- --coverage --watchAll"
+
+watch specific files only --- so watch for files in src in components with ts or tsx file extensions
+"coverage": "npm test -- --coverage --watchAll --collectCoverageFrom='src/components/**/*.{ts,tsx}"
+
+--collectCoverageFrom='!src/components/**/*.{types,stories,constants,test,spec}.{ts,tsx}' --- add this to ignore other files
+
+
+
+***further studying on +++++coverage
+coverageThreshold
+
+
+
+Assertions - 
+
+expect(value) + "matcher" function to determine or assert something about the value
+
+ex. expect(textElement).toBeInTheDocument() ---- checks whether textElement is in the DOM 
+
+
+
+WHAT TO TEST IN A REACT COMPONENT??
+1. Test if component renders
+2. test if component renders with given props
+3. test component renders in different states - example, login button if user is logged out and none if logged in
+4. test if component reacts to events like form buttons etc.
+
+
+
+WHAT NOT TO TEST??
+1. implementation details - test the behavior not how it is implemented
+2. third party code - test your own code. not code from a library. like a Component from antd
+3. code that is not important from a user point of view --- like utiliy or helpers, instead output of those utiliy
+
+
+
+=====================
+
+RTL QUERIES
+
+
+usual steps:
+
+1. render component
+2. find an element rendered by component
+3. assert against element 
+
+
+
+GET - returns matching node for a query and throws a descriptive error if no elements match or more than one match
+
+
+•getByRole - aria role
+--this is top preference for queries if it is available
+
+name option: label of an element, text content of a button, aria-label value
+
+level option: used for headings ex. h1 = level: 1 h2: level 2
+
+
+hidden
+selected
+checked
+pressed
+etc
+
+
+•getByLabelText - label tag. that connects it with htmlFor and id of element connected
+•getByPlaceholderText
+•getByText - text node / textContent => div span p elements (textContent)
+•getByDisplayValue -- for elements like input that has value like in react value={state.input} onChange={handleChange}
+•getByAltText --- for elements that has alt text like img
+•getByTitle --- elements with title. like a span tag with a title
+•getByTestId --- matching data-testid attribute
+
+When to use Each query?
+-priority order for queries
+
+1. getByRole - top preference is available
+2. getByLabelText
+3. getByPlaceholderText
+4. getByText
+5. getByDisplayValue
+
+if all is unavailable - getbyAltText / getByTitle
+
+last resort => getByTestId (dynamic text or data of element)
+
+
+
