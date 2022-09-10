@@ -1,0 +1,23 @@
+Aug 13,2022
+
+
+
+converting pokedex to TS
+
+-researched about typing api response data that has a lot info / data you dont need.
+
+
+API data and typescript
+
+
+
+-if api response have a lot of data, and you know what you need, 
+
+you can type or create an interface of only those properties you need.
+
+--If you know the structure you need but the responses have a lot of information you don’t care about, you can write your types using just the properties you know and care about. It won’t matter if the actual responses have more properties on them.
+
+
+*when converting a react app to TS with api with large data / data you dont need
+
+-create basic interface first and just add properties as you need them
