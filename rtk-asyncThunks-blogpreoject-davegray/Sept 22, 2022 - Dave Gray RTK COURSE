@@ -1,0 +1,114 @@
+
+September 22, 2022
+
+React Redux RTK Dave Gray vid#5
+
+React redux Performance techniques and optimizations
+
+
+
+1. create usersList page with links of every user
+2. when user is clicked, routes to a page of that user with all of that users posts
+3. posts are clickable and will route to singepost page
+
+
+
+so create function select user by id to go to user page
+in user page, pass user id as param and selectpostsBuUser
+this will filter all posts and return all posts by that user using his userId
+display all posts of that user as clickable links which routes to singlepostpage using post id of clicked post
+
+
+// find user using userId
+export const selectUserById = (state, id) => {
+  const foundUser = state.usersState.find((user) => user.id === id);
+  return foundUser;
+};
+
+
+// find posts of user using userId as well
+export const selectPostsByUser = (state, userId) => state.postState.posts.filter((post) => post.userId === userId);
+
+
+
+
+FIRST OPTIMIZATION:
+
+using Profiler of react dev tools.
+
+so problem is, when count button is updated, the whole user page gets re-rendered every time. because filter method returns
+a new array everytime. so the component gets re-rendered because of this.
+
+SOLUTION: createSelector => to create a memoized selector
+
+--- a little bit complicated lol need to study further
+
+
+2nd OPTIMIZATIOM:
+
+-when a reaction of a single post is clicked, every post re-renders. in your case, one hundred posts re-render per click
+
+SOLUTION: React.memo.
+
+this makes the component (PostItem) only re-render if its props change. so only the post whose reaction is clicked, gets re-rendered not all one hundred. 
+
+
+
+Better SOLUTION:
+
+Normalization / Normalizing State Shape
+-recommended in docs (redux)
+-no duplication of data
+- creates an id lookip
+
+
+here comes CREATEENTITYADAPTER:
+
+in postSlice, import createEntityAdapter from reduxtk
+
+create postAdapter function
+
+const postAdapter = createEntityAdapter({
+  sortComparer: (a, b) => b.date.localeCompare(a.date),
+});
+
+
+change initial state into  
+
+const initialState = postAdapter.getInitialState({
+  status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: null,
+  count: 0,
+});
+
+
+
+HMMMMM nagkakulay. haha
+
+// entity adapter => state becomes an object with an id array for each item and each item in the entities object
+
+// {
+//   // The unique IDs of each item. Must be strings or numbers
+//   ids: []
+//   // A lookup table mapping entity IDs to the corresponding entity objects
+//   entities: {
+//   }
+// }
+
+// i think what happens here is in postAdapter.upsertMany(state,loadedPosts)
+// loadedPosts being an array, is mapped through, number of items becomes number of ids in ids array.
+// and loadedPosts array item, are put into entities as object. an object per item.
+// just like in an array of object.
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,129 @@
+Sept 14, 2022
+
+
+Dave Gray RTK course
+
+-doing this because i suck at understanding rtk query part of mern project so gonna study this and pausing the mern stack.
+-gonna get back to it after this rtk course.
+
+
+After you create a basic CRA app:
+
+1. npm i @reduxjs/toolkit react-redux
+
+
+2. create app dir in src and create store.js in  it to configure and initialize a redux store.
+3. Wrap whole app in root with Provider and pass store as store prop.
+3. create features dir and a dir for each feature you will use that uses state
+   - ex. counter dir, in it is a counterSlice.js which holds the state management for counter feature
+   - also in counter dir, the view for this counter feature
+4. create slice for feature and configure reducer and initial state
+5. pass created reducer from slice to store
+6. use in Component with useSelector and useDispatch
+
+--- all good. 1st video just a refresher. onto the next vid!
+
+
+
+
+Example Project with Redux Toolkit - Video # 2 of series
+-pretty much same
+-configure store
+-Provide the store
+-create features
+ -create slice for feature
+ -create view for feature
+ -add feature reducer in store and use it in view
+
+
+
+
+==============================================================================
+September 15, 2022
+
+
+NANOID: id generator much like uuid but smaller.
+
+PREPARE:
+created prepare to customize generated actions creator.
+ -modify the payload passed like adding a unique id from nanoid. use prepare.
+ -action becomes an object instead of a function
+ - with reducer property and a prepare property
+ 
+ 
+ 
+ import { createSlice, nanoid } from '@reduxjs/toolkit'
+
+const todosSlice = createSlice({
+  name: 'todos',
+  initialState: [],
+  reducers: {
+    addTodo: {
+      reducer: (state, action) => {
+        state.push(action.payload)
+      },
+      prepare: (text) => {
+        const id = nanoid()
+        return { payload: { id, text } }
+      },
+    },
+  },
+})
+
+
+
+remaining:
+
+-review all done parts and finish and compare to video and seek explanation
+
+
+ALL DONE:
+
+-what is prepare in create slice
+nanoid.
+merong id yung post meron din userID and date
+-create user slice
+above all done*
+
+-reactions hmmm
+add icons. when clicked, saved in state.
+like number of likes gets updated.
+
+author name section
+time ago
+
+
+======================================== reaction logic
+created test buttons for likes and hearts in post item comonent
+created onClick funtion handleClick for the buttons that takes in the id of the post and hardcoded reaction names as object as payload to be passed to dispatch function
+
+in postSlice-
+created addReaction to reducers of postSlice
+destructure id and react name from action.payload
+find item with passed post id in the list of posts
+
+if existing use react name to add 1 to post reactions for that react name
+
+
+REACTION  BUTTONS:
+
+// Object.entries
+//- creates an array from passed object and makes an array for each key value pair of the object
+// as ["key", "value"]
+
+// const object1 = {
+//     a: 'somestring',
+//     b: 42
+//   }
+
+//   Object.entries(object1) // Array(2) [["a", "something"], ["b", 42]]
+
+
+AUTHOR: 
+
+-get all users
+-find user using userid of post and render correct author
+
+TIMESTAMP:
+
+date-fns library --- cool!

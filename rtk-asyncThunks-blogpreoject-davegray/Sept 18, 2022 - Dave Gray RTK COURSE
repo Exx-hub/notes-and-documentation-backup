@@ -1,0 +1,74 @@
+September 18, 2022
+
+
+Dave Gray Redux Course Video 3:
+
+*redux does everything synchronously. so anything async has to happen outside the store
+=> redux middleware => redux thunk is redux's standard approach to handling async
+
+thunk in english means a piece of code that does some delayed work.
+
+
+Redux Thunk:
+
+
+1. install axios
+2. reconfigure your initial state into a state object instead of a posts array
+3. import createAsyncThunk
+
+
+
+
+-created fetchPosts async function to fetch data from api
+-created extra reducers and created builder function to handle pending fulfilled and reject 
+-changing the state per step using immer.
+
+-in fulfilled after getting all data, data fetched is modified to add date and reactions property
+- after adding setting new post array to post state
+
+-in view, with useEffect, use dispatch function to call async function fetch users, to populate post state
+- so that useSelector will be able to get state
+
+
+POSTLIST:
+- start with empty post array state
+- useEffect runs and fetches post data from api using dispatch, this populates the state
+- useSelector can now get all posts from state and render in the ui
+
+
+
+USERLIST almost same implementation
+
+
+-create asyncthunk for fetching users, and call dispatch in index.js because we want the users fetched
+as the app loads
+
+
+ADD post is also used with async thunk if sending POST Requests
+
+initial addPost function only is local. if sending real data to api as POST, async thunk is used.
+
+
+
+
+======================================
+redux thunk, createAsyncThunk for:
+
+fetching posts sa api
+fetching users sa api
+
+adding post sa api POST request
+
+-- dunno why after adding a post request, why need to manage modify state.
+
+
+
+
+
+
+
+
+
+
+
+

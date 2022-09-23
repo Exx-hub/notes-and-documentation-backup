@@ -1,0 +1,37 @@
+September 19, 2022
+
+
+DAve Gray RTK Video# 4
+
+
+Selecting a single post from state using id.
+
+-selectPostById selector function
+
+
+export const selectPostById = (state, id) => state.postState.posts.find((post) => post.id === id);
+
+
+
+----try doing first before watching
+
+
+September 21, 2022
+
+
+Dave Gray RTK Playlist video # 4
+
+
+-install react router (already done)
+-set up routing
+
+
+Layout component which will be the parent route. with children routes.
+
+in this layout component, there should be an Outlet. this will represent and render all children routes nested within 
+layout parent route.
+
+
+
+ 
+
