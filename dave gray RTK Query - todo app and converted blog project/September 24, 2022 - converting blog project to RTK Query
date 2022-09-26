@@ -1,0 +1,89 @@
+September 24, 2022
+
+Dave Gray React Redux Toolkit Query Series - Vid # 7
+
+
+--trying to convert cAT blog project into rtk query on my own. let's see...
+
+***createSelector a little unclear
+
+
+
+
+
+1. i did an apiSlice
+
+
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export const apiSlice = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://jsonplaceholder.typicode.com",
+  }),
+  tagTypes: ["Post", "User"],
+  endpoints: (builder) => ({}),
+});
+
+
+2. configure store and  api slice Add to store
+
+
+export const store = configureStore({
+  reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+  devTools: true,
+});
+
+
+3. in postSlice - 
+
+-configure and initialize entity adapter
+
+
+
+4. test in component if able to fetch POSTS -- use hook that is auto generated useGetPostsQuery
+--able to fetch all post and pass ids from ids array to each post item
+
+
+
+5. back to post slice and create selectors
+
+6. select fetched data from endpoints
+=> export const selectPostsResult = postsSlice.endpoints.getPosts.select();
+
+7. create memoized selector that returns entitiy object and ids of fetched data
+
+=> const selectPostsData = createSelector(selectPostsResult, (result) => result.data);
+
+
+8. auto generated selectors from createSelector
+
+ex. convert getPostById selector to rtk query selector
+
+export const {
+  selectAll: selectAllPosts, 
+  selectById: selectPostById, 
+  selectIds: selectPostIds, 
+} = postsAdapter.getSelectors(
+  (state) => selectPostsData(state) ?? initialState
+
+
+
+9. fetch posts and display posts and view single post done.
+next is: Adding a post
+
+
+
+
+----sakit sa ulo watch then compare before you do on your own
+
+
+
+
+
+
+
+

@@ -1,0 +1,113 @@
+Septemer 25, 2022
+
+
+Dave Gray RTK Course Vid#7
+
+-convert blog project from Axios async thunks to RTK Query, normalized state and optimistic updates
+
+
+1. instead of using jsonplaceholder fake api, switch to creating a db.json and using json server
+--this allows CRUD functions more. 
+
+
+DAVE's Steps:
+
+1. create apiSlice (createApi, fetchBaseQuery)
+
+2. REmove AsyncThunks and axios
+
+3. keep entity adapter
+4. empty out initial state
+5. remove everything in postSlice (createSlice) and replace with apislice.injectEndpoints
+
+builder.query -
+
+query: () => '/posts'   ---- attaches to baseurl in apislice and performs a get request
+transformResponse ----- transforms fetched data => then send to entity adapter to normalize state
+		ex. postAdapter.setAll(initialState, fetchedData)
+providesTags: --- // basically refetch if any of the posts gets invalidated
+
+
+--- selectores auto generated
+
+-- select fetched query object  => export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();
+
+--memoized selector = > // returns data fetch from entity adapter ids and entities
+const selectPostsData = createSelector(selectPostsResult,(result) => result.data );
+
+
+-- getSelectors
+
+export const {
+  selectAll: selectAllPosts, 
+  selectById: selectPostById,
+  selectIds: selectPostIds, 
+} = postsAdapter.getSelectors((state) => selectPostsData(state) ?? initialState);
+
+
+
+
+
+6. now change the store
+
+export const store = configureStore({
+  reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+  devTools: true,
+});
+
+
+7. remove store.dispatch(fetchPosts()) in index.js which fetches the posts when app loads.
+=> replace with --- store.dispatch(postsApiSlice.endpoints.getPosts.initiate()) 
+--- this was what i was missing yesterday. how to initialize fetch on app load.
+
+8. now instead of using useGetPostsQuery to fetch posts and display,
+posts are now fetched when app loads initially.
+
+--in PostList use useSelector and select postIds from entity adapter to get ids of current state
+-- map through and pass each id as you create PostExcerpt component for each id
+
+
+9. ADD POST
+
+-what you did yesterday was correct. all that was really missing was the fetch on initial
+
+-create addpost query
+-?transform response? => none
+-invalidatesTags => to refresh fetched list by refetching 
+
+
+----- basically add post query and pass new post content into the request body
+--- this will the list and add a new one.
+--- then invalidate
+
+***with mutation, since interacting with api, no need to modify adapter since you are not saving global state in crud operations...? -- i think yes
+
+10. Quite similar are update post and delete post
+
+
+11. ADD REACTION
+
+--feature, when an icon is clicked, that icons value in the post object is increased by 1, then sent to api as patch.
+--and replacing the old value of reactions object into the new one with one property incremented by one.
+
+
+*onQueryStarted --
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
