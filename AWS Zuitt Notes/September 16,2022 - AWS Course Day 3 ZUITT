@@ -1,0 +1,113 @@
+SEPTEMBER 16, 2022
+
+gmeet link: https://meet.google.com/fne-rcpf-vuk
+
+
+ssh -i "zuitt_oregon_instance.pem" ubuntu@ec2-34-219-102-247.us-west-2.compute.amazonaws.com
+
+AWS COURSE Zuitt Day 3
+
+
+cont. SESSION 3
+
+
+-to maintain a server running, even if machine is not turned on.
+
+-- install PM2
+
+PM2 is a Production Process Manager for Node.js applications with a built-in Load Balancer.
+
+
+1. mkdir ~/.npm-global
+
+2. npm config set prefix '~/.npm-global'
+
+3. sudo nano ~/.profile      => to edit / configure .profile
+	- export PATH=~/.npm-global/bin:$PATH  => add this in .profile (after one new line (enter) in the bottom)
+
+
+4. source ~/.profile
+
+
+5. npm install pm2 -g
+
+
+--- now this allows the server to continuously run. even if not in the instance or terminal is off etc.
+
+
+pm2 delete app => to delete name
+pm2 start app.js --name merng-tracker-api => to rename
+pm2 stop app => to stop
+
+
+
+
+
+==========================================================================================================
+
+SESSION 4:
+
+
+Amazon S3 Bucket
+
+- deploy a tempate website to S3
+- creating an s3 bucket
+- enable static site hosting which is disabled by default
+- upload template files
+- making uploaded files public
+- make object public on upload
+
+-deploy a reactjs app
+
+
+
+
+
+S3 => Simple Storage Service
+---- larger storage than EC2
+---- parang mas malakas na alternative than github pages
+
+
+Deploy a static website:
+
+1. clone a project
+2. go to s3 dashboard - click create bucket
+  -write a bucket name => always start with "int-bucket"  ex. int-bucket-b219-acosta-html-template-demo-01
+  -set region. for zuitt => oregon
+
+  - tick ACLs enabled
+  - untick block all public access and tick acknowledge
+  - create bucket
+  -enable static website hosting
+    -index.html
+    -save changes
+    
+  - go to upload and drag and static files
+  -make public using ACL in actions
+
+
+
+
+Deploying REact app:
+
+-create build => npm run build
+
+
+1. create another s3 bucket
+2. enable static
+3. upload files from build folder
+4. after upload, permission
+
+
+
+MERN G
+http://int-bucket-acosta-merng-tracker-client.s3-website-us-west-2.amazonaws.com/
+
+
+STATIC PORTFOLIO
+http://int-bucket-acosta-html-template-demo-02.s3-website-us-west-2.amazonaws.com/
+
+
+
+
+

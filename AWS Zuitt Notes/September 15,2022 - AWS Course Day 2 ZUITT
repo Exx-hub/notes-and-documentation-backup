@@ -1,0 +1,240 @@
+Sept 15, 2022
+
+gmeet link: https://meet.google.com/fne-rcpf-vuk
+
+
+ssh -i "zuitt_oregon_instance.pem" ubuntu@ec2-34-219-102-247.us-west-2.compute.amazonaws.com
+========================================================================================================
+
+AWS Course Zuitt Day 2
+
+Session 2 cont.. =>>>>>>>>>>>>>
+
+
+Update installed node using nvm:
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+source ~/.bashrc
+nvm install v16.17.0
+
+
+if ping is not enabled in inbound rules, ping will not push through => request timeout
+
+
+inbound rules => within the server
+outbound rules => limit communication outside the server (security feature)
+
+
+Internet Control Message Protocol - ICMP
+
+
+
+1. create test html in test app dir using nano editor or vim
+
+write html then ctrl o to save and ctrl x to exit.
+
+2. run node js server => npx serve
+
+
+3. open a tab in your browser and paste public ipv4 address and indicate port
+
+public ipv4 address: 34.219.102.247
+port: 3000
+
+ex. 34.219.102.247:3000
+
+===> this will not be allowed yet. you need to allow it in INBOUND RULES
+
+
+4. Add inbound rule
+
+=> type: custom TCP protocol: TCP port range: 3000 source: anywhere ipv4
+
+*TCP => Transmission Control Protocol
+
+
+5. Access your browser again, and your html should be now served!
+
+
+
+======================================================================================
+
+SESSION 3 
+
+
+Deploying Apps to EC2
+
+
+***whenever we will install dependencies, run update and upgrade first---
+
+sudo apt-get update
+sudo apt-get upgrade
+
+
+1. to install mongodb run:
+
+=> wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+
+=> echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+
+=> sudo apt-get update
+
+=> sudo apt-get install mongodb-org
+
+
+
+2. Start mongodb server
+
+=> sudo systemctl start mongod
+
+
+3. Check status of mongodb server (if running)
+
+=> sudo systemctl status mongod
+
+4. Enable mongodb server
+
+=> sudo systemctl enable mongod
+
+
+5. Connect to mongodb server
+
+=> sudo nano /etc/mongod.conf
+
+
+--- creates /etc/mongod.conf (config file for mongodb server)
+
+----- edit config file by adding
+=====> ipv4 address beside bindIp separated by comma no space (ipv4 private address 172.31.11.169)
+
+# network interfaces
+net:
+  port: 27017
+  bindIp: 127.0.0.1,172.31.11.169
+
+
+**whenever you apply changes / configuration, instance / server needs to be restarted.
+
+=> sudo systemctl restart mongod
+
+
+
+
+ROBO3T:
+
+create new connection
+change name
+change address => public ipv4 address 34.219.102.247
+click test to test connection
+
+this will fail because of inbound rules so you need to add new rule => tcp port 27017 anywhere ipv4
+
+
+
+mongo shell command to enter mongo shell => mongo mongodb://localhost:27017
+
+-- to connect to mongoserver
+
+*Set up authorization / security
+1. switch do db admin => type "use admin" in mongo shell running
+
+2. create a user
+
+---- db.createUser({ user: "ec2-admin", pwd: "ec123", roles: [{ role: "root", db: "admin" }] })
+
+expected response:
+
+Successfully added user: {
+	"user" : "ec2-admin",
+	"roles" : [
+		{
+			"role" : "root",
+			"db" : "admin"
+		}
+	]
+}
+
+
+3. exit to go back to instance.
+
+
+
+
+
+===========================
+
+6. Enable Authorization
+
+go back to mongodb config => sudo nano /etc/mongod.conf
+
+go to security line, remove # (comment)
+
+go to next line and hit space twice and type authorization: "enabled"
+
+security:
+  authorization: "enabled"
+  
+----since configuration changed again, restart server to apply changes
+
+=> sudo systemctl restart mongod
+
+
+
+7. Go back to robo3T and try to connect. this will fail because of the authorization you set up
+
+8. edit connection and apply credentials of admin created, input credentials in authorization tab
+
+
+9. once all is ready and connected, 
+
+start the deployment process for both FE and api
+
+- create merng-tracker dir in codes dir 
+
+
+- go to gitlab and click preferences and click access token
+- create access token, add token name and expiration date
+- tick read and write repository
+- create. now your personal access token has been created.
+
+- now clone api in merng-tracker => paste git clone url of project
+ - this will ask for username, either type your gitlab username or the access token
+ - this will also ask for password, also type the access token
+ - now the api has been cloned 
+ - also clone the client (FE)
+ 
+
+API
+-set env variables , since file already has .env.example file, we just need to copy into .env
+ => cp .env.example .env
+-now edit .env file => sudo nano .env
+-input variables needed for PORT and MONGODB_SRV
+PORT=4000
+MONGO_SRV=mongodb://ec2-admin:ec123@[ec2-ip-address]:27017/merng_tracker?authSource=admin
+
+*change [ec2-ip-address] into your public ipv4 address
+
+-npm install to install dependencies
+
+RUN API:
+=> npm start
+
+-now api is already running :), but not yet accessible
+
+
+*set inbound rules again to be able to access TCP 4000 anywhere
+
+-now it will be accessible
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+September 14, 2022
+
+AWS Course Zuitt - Day 1
+
+EC2 - Elastic Cloud Compute Service
+
+Virtual Machine
+
+
+EC2 - service that allows users to rent virtual machines to run their applications
+
+EC2 Instance Types - 
+
+Instance is a virtual machines hosted or located in AWS insfrastrucure and there are a variety of instance types depending on your needs
+
+
+
+
+
+steps done:
+
+1. create EC2 instance
+
+-- go to instance => click instanceId
+
+
+PEM - Privacy Enhanced Mail
+
+
+sudo chmod 600 /home/alvinacosta/.ssh/zuitt_oregon_instance.pem
+
+
+click connect, ssh client tab, copy ssh connection string
+
+
+ssh -i "zuitt_oregon_instance.pem" ubuntu@ec2-34-219-102-247.us-west-2.compute.amazonaws.com
+
+=========
+
+Session 2
+
+
+EC2 BASICS -
+
+
+•Ping Request -to check running state
+
+=> ping <Public Ipv4 address>  ex. ping 34.219.102.247
+
+--by default ping is not allowed --- need to configure INBOUND RULES to enable features such as ping
+
+
+update inbound rule
+
+=> click security tab in console and click security groups id link
+=> click edit inbound rules button ----add rule
+
+=> then select type: Custom ICMP - IPv4, protocol: Echo Request, source: anywhere ipv4
+
+=> click save rule
+
+now try pinging again, you should be able to see pinging
+
+
+
+•Monitor Instance Usage - watch out for resources used by instance
+
+=> htop
+
+=> f6 and select to sort 
+
+
+•Disk Utilization
+
+=> df
+
+
+•instance setup / installing necessary dependencies like node and npm
+
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install nodejs npm
+
+
+
+=> setup files and folders
+
+mkdir codes
+cd codes
+mkdir test-app
+
+
+
+
+
