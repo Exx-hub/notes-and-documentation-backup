@@ -1,0 +1,58 @@
+October 5 - 6 , 2022
+
+DAve Gray Mern Stack videos 9, 10, 11
+
+
+
+all aboyt ACCESS TOKEN and REFRESH from JWT --- and login and logging out plus refreshing jwt
+
+--- cant seem to get cookie sent with requests... refrsh not working..
+--UPDATE - all working now.
+confirmed that cookie is present in request object on every request to correct path.
+
+- and was sent by server through res.cookie or Set-Cookie.
+- cannot be accessed through javascript
+
+
++++persisting data.
+
+created the usePersist custom hook
+create PersistLogin component hmmm
+
+
+
+Role-based Access Control and Permissions
+
+FE - 
+
+install jwt-decode to decode the jwt received from server
+
+decode token,
+use data stored in token in components like username and roles which you stored inside token
+
+
+also use roles for restricting access to parts of the page (FE)
+
+-- so just like in EDS check roles and restrict links. isAdmin && ...
+
+
+-- wrapper protected routes and wrapper persist login need to look into further.
+
+
+
+
+.env vars backend
+
+NODE_ENV=development
+DATABASE_URI=mongodb+srv://alvinacosta:A7v1n@technotesdb.yk5u4bd.mongodb.net/techNotesDB?retryWrites=true&w=majority
+ACCESS_TOKEN_SECRET=ae54d774e836ff8f523fb299b81787d1caf67a758d968dd30c28b755be6b0d4317c866797b0e18c14c1fe099b70d50b0eccebcedaae35239e3db479cd67ce20e
+REFRESH_TOKEN_SECRET=2a3ad20dff76fec82f012f2ae56191ff92d0331f4b6ab3ea6358388b6fe1278ef2f9eb72160d7cbd5cbbd4528873ade14e12a10db6f247cf6e7d6fdc358b7f21
+
+
+
+
+
+
+
+
+

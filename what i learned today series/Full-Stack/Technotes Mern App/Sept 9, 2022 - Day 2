@@ -1,0 +1,30 @@
+September 9, 2022
+
+
+Dave Gray Mern Stack
+
+
+4. Adding Controllers and Routers 
+
+- create userRoutes in routes folder
+- create userController and noteController in controllers folder
+- install bcrypy and express-async-handler
+
+
+***express-async-handler 
+=> library to help with try catch and async functions, still catch errors without using try catch blocks
+
+...doing controller logic 
+
+creating new user
+updating user
+delete user
+fetch all users
+testing controller functions
+
+***
+
+challenge => do noteController line by line
+
+
+

@@ -1,0 +1,286 @@
+October 1, 2022
+
+
+Dave Gray MERN Stack - Vid #8
+Authentication and Authorization - Login and JWT 
+
+
+BACKEND:
+
+
+Authentication => process of verifying who someone is
+
+Authorization => process of verifying what resources a user has access to.
+
+
+
+-- when a user logs in and succeeds, he is authenticated. 
+-- an authenticated user does not mean he is authorized to all resources.
+
+ex. an employee may not have access to user management database, only an admin should be able to access.
+ex. a user may read files but may be not permitted to write files.
+
+- JWT for authorization. with tokens, a user may be able to have access to parts of the app.
+
+
+
+JWT - 
+ACCESS TOKEN => expiration is usually short time => like 15 minutes  
+REFRESH TOKEN => longer time => 1 hour, 1 day, or days
+
+our rest api will send and receive access token as json and will be saved in state (redux)
+will not store in local storage or cookies so if the app terminates, the token will be lost. does not persist.
+
+because if you can store it somewhere with javascript, a hacker can also retrieve it with javascript.
+
+
+refresh token => httpOnly so that cannot be retrieved with javascript (hackers)
+		-- also not accessible with javascript
+
+
+access token process:
+
+1. issued after authentication (login)
+2. client uses token for api access until it expires
+3. access tokens are verified with middleware, whenever used to make requests to api 
+4. new token issued with Refresh request
+
+
+refresh token process:
+
+1. also issued after authentication
+2. verified with endpoint
+3. used to request new access token
+4. must be allowed to expire or logout to prevent indefinite access
+
+
+
+===================================================
+
+1. create auth route in routes
+2. import in server.js and use auth route
+3. create routes / endpoints in authRoutes
+
+4. install => npm i express-rate-limit
+   ---
+   
+5. create loginLimiter.js using express-rate-limit library
+
+
+6. create authController
+
+	- import User model
+	- import bcrypt to unhash password 
+	- import jwt
+	- import express async handler
+
+	- create endpoints but placeholders for now login and refresh and logout
+	- add endpoints to your auth routes
+
+
+a. login endpoint
+- get username and password from request body
+- check if user exists with username
+- if no user, return 400
+- if there is user, compare password from body to found user's password
+- if passwords do not match return 400
+- if passwords match create jwt - access token and refresh token and set res.cookie
+
+-- include jwt in successful response
+
+
+create jwt:
+
+easy way to create a secret build in to node.
+type node then enter to go to a node terminal.
+and run => require('crypto').randomBytes(64).toString('hex)
+this command will return a random string.
+
+
+copy and add to env as token secret for access and refresh
+
+
+jwt.sign(payload, secret, options)
+
+ex.
+
+  const accessToken = jwt.sign(
+    {
+      UserInfo: {
+        username: userFound.username,
+        roles: userFound.roles,
+      },
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: "10s" }
+  );
+
+
+const refreshToken = jwt.sign(
+    { username: userFound.username },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: "1d" }
+  );
+  
+    // create secure cookie with refresh token
+  res.cookie('jwt', refreshToken, {
+    httpOnly: true, // accessible only by web server
+    secure: true, // https
+    sameSite: 'None', // // cross-site cookie
+    maxAge: 7 * 24 * 60 * 60 * 1000 // cookie expiry set to match refresh token expiry
+  })
+  
+    // send accessToken containing username and roles
+  res.json({ message: "Login success",  accessToken });
+  
+=== so after verifying username and password, create access token and refresh token for user.
+
+
+
+b. Refresh endpoint
+
+***somehow need to include a jwt.cookie in the request headers. get cookies from set-cookie  from login
+
+-extract cookies from req.cookies
+- if there is no cookies specifically cookies.jwt, return 401
+
+-set refreshToken variable to cookies.jwt
+
+- now use jwt.verify to verify refreshToken validity
+
+=> jwt.verify(refresh token, refresh token secret, callback for issuing new access token if refresh token verified)
+
+cb => 
+-check for error
+- find user using user data stored in refresh token
+- if user not found return error
+- if there is user, create a new access token
+- return success with new access token to the client
+
+
+
+c. Logout endpoint
+
+- send cookie with jwt in request object
+
+-check if there is cookie.jwt, if none return 204 /// no content
+
+-  res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true})
+
+-  res.json({message: 'Cookie cleared.'})
+
+
+
+---- endpoints for auth done, now create the verify middleware to restrict certain endpoints
+
+
+
+7. Create verifyJWT middleware to check token on requests.
+- extract authHeader from req.headers.authorization
+- if auth header is not Bearer Token, return 401.
+
+- save token -> get from authHeader -> const token = authHeader.split(" ")[1]
+
+- then jwt.verify this token against ACCESS TOKEN SECRET and callback
+
+cb => if error return 403, if no error, set req.user to saved username in token and also req.roles to saved roles
+
+
+8. APPLY VERFITYJWT middleware to the routes you want to protect
+
+-- instead of router.route("/").get(verifyJWT, getAllNotes) ----- this applies the verify middleware to the getAllNotes
+
+-- to apply to every route in a specific route directory like the noteRoutes,
+=> router.use(verifyJWT)
+
+just like how we do app.use(express.json()) in our server file which applies express.json middleware throughout the app
+
+
+
+9. TEST auth routes
+
+1. hit login and you will receive response with accessToken and if you look at cookie manager in postman, you will see the jwt cookie with refresh token.
+-dunno yet how to access this in client
+- deleted "secure" for now because we are in development. in production it should be secure.
+
+2. now go to refresh endpoint and use the cookie
+---- this endpoint in postman automatically sends or includes the cookie in the request => req.cookies. how in client
+
+==> success refreshing => received new token
+
+3. hit logout endpoint and this should automatically clear cookie in postman. check how this is in the browser
+what gets cleared?
+
+
+
+
+
+
+
+****need to study further
+
+FE stuff when sending requests....
+
+1. jwt
+2. cookies
+  - how to send cookies from client
+  - how to receive cookies and store where?
+	login: store cookie? res.cookie
+	refresh: send cookie in request to check validity of token
+	logout: also send cookie in request, then clear with res.clearCookie -> what does this do?
+  
+  - verifyJWT ->  where to set authorization header? req.headers.authorization
+    	      -> Bearer Token?
+  
+  - how to access the cookie using the client from the response just like in postman
+	
+
+
+i think, so when you login successfully, access token will be sent in response.
+
+save that access token to auth slice.
+
+when requesting access to an endpoint, include token in query.
+
+verifyJWT middleware will check token first, and will grant or deny access to the person if no token.
+
+
+if with token, user and roles will be set in request headers and next function will be triggered.
+
+now going into the protected endpoint, like get all notes for example.
+
+- ***check roles if deny or permit access to endpoint.
+
+
+sa refresh naman, if nagexpire na yung access token.
+
+=> refresh token is saved in browser cookie.
+--- hitting refresh endpoint, cookie is included automatically i think in request object req.cookies
+
+-req.cookies has saved jwt. 
+
+- token will be verified against refresh token secret. if verified, stored info in refresh token (username)
+
+is used to find specific user requesting refresh access. if finding user is successful,
+
+generate new access token and return in response
+
+save this refreshed access token to auth slice.
+
+
+--- refreshed token is now used for requesting endponts from the client.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
