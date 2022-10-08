@@ -1,0 +1,91 @@
+September 26, 2022
+
+
+React Redux Login Authentication Flow - JWT, refresh token and cookies
+
+1. CRA
+2. install rtk, react redux and react router --- npm i @reduxjs/toolkit react-redux react-router-dom
+3. configure basic routing
+
+4. create app dir
+   - api dir => apislice.js
+   - store.js
+   
+5. components dir
+   - Layout component with Outlet => handle nested routing
+   - Public component => public dashboard / homepage of app
+   
+6. create features dir
+   
+   - auth dir
+     - boiler plate Login component
+     - auth slice and authApiSlice?
+     (auth slice confusing and verbose...)
+
+7. login component using authSlice and authApiSlice
+-- form here
+
+
+8. RequireAuth component for protected routes
+
+--- so route protection here is done through a requireAuth component which checks if there is token
+----- if there is renders Outlet component which allows render of child routes
+
+-----if no token, redirects user back to login page.
+
+
+----- this is a simple example. but def works for now.
+
+
+9. Welcome Page --- after successfully logging in.
+--- this is a protected route / component
+
+
+
+
+----- cannot do this without a backend. maybe i should just continue mern stack now.
+
+
+1. why is there an auth slice and an authApiSlice and an apiSlice? why need both?
+auth slice - actions for auth that doesnt connect to api?
+apiSlice -   like axios - separate file with api configuration?
+authApiSlice - actions for auth that connect to api?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

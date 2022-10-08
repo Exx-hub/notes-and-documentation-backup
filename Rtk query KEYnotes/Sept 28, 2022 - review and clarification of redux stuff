@@ -1,0 +1,92 @@
+answers to questions:
+
+1. unwrap? 
+-- used in mutations
+-- returns success or failed / raw response or error
+-- enabling the try catch if returns an error
+
+-- If you need to access the error or success payload immediately after a mutation, you can chain .unwrap()
+
+addPost({ id: 1, name: 'Example' })
+  .unwrap()
+  .then((payload) => console.log('fulfilled', payload))
+  .catch((error) => console.error('rejected', error))
+
+
+2. ---rtk query --- create api --- what exactly is this for
+
+
+The React-specific entry point for RTK Query exports a version of createApi which automatically generates React hooks for each of the defined query & mutation endpoints.
+
+
+*create api  
+
+=> to be able to use hooks from built endpoints (apiSlice)
+---this is also main slice for api or central api
+
+----sometimes api slice has empty endpoint function
+
+
+---- this is for injecting endpoints from extension api slices for code splitting
+---- separating other logic per se
+
+---- so you can do your endpoints in the central api slice or separate logic into extended api slices through inject endpoints
+
+
+
++ create api => used for rtk query only. allows use of custom hooks. no createApi in asyncThunk
+
++ feature slice => ex. authSlice ---- for global state 
++ central api slice => ex. apiSlie ---- to allow use of hook for rtk query, with endpoints for queries
++ extended api slice => ex. authApiSlice --- for code splitting. move endpoints for a feature into a separate file
+
+*** no need for extended api slice if only using few endpoints or few features
+*** we separate logic for other featrues if there are multiple features and endpoints (extendedApiSlice)
+
+
+
+3. ---store part with apiSlice and middleware 
+--- just understand and copy paste. needed configuration for create api
+
+-- The generated slice reducer and the middleware both need to be added to your Redux store setup in configureStore in order to work correctly.
+
+
+
+4. ---Experience working in an Agile environment --- scrum / sprints in development
+
+
+5. --when to use entity adapter and when to use just createSlice??
+
+still dont know when and when not to use entity adapter
+
+--https://redux-toolkit.js.org/api/createEntityAdapter
+
+
+6. compare postSlice with and without entity adapter 
+--- hmm difference is, entity adapter comes with its own crud methods to update the state like addOne, upsertOne etc.
+--- also comes with selectors =? selectAll, selectById, selectIds
+
+--- while without entity adapter, traditional selector with useSelector
+
+
+---- main difference is selecting state items and updating state.
+
+
+7. createSelector? --- https://github.com/reduxjs/reselect
+
+
+8.
+RTK QUERY
+onqueryStarted
+optimistic updates	
+
+--- https://redux-toolkit.js.org/rtk-query/usage/examples#react-optimistic-updates
+
+
+
+
+
+
+
+
+

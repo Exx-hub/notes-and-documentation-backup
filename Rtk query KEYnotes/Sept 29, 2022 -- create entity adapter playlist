@@ -1,0 +1,82 @@
+September 29 ,2022
+
+create entity adapter playlist. getting to the bottom of it.
+
+
+
+
+const commentsAdapter = createEntityAdapter({});
+
+- 2 arguments optional
+1. sortcomperer
+2. selectId ---- default implementation is entity => entity.id
+	--- so if your data has id property no need to add select id.
+	--- need selectid if for example your unique ids are stored in a different property like "userId".
+	--- entity => entity.userId
+	
+	
+-- there are options for setting data to entity adapter => addOne, AddMany, setAll, upsertOne
+
+
+
+--- adapter also have getselectors => to selectAll, selectById, selectTotal, selectEntities, selectIds
+
+
+export const {
+  selectAll: selectAllComments,
+  selectById: selectCommentbyId,
+  selectIds: selectCommentIds,
+  selectEntities,
+  selectTotal,
+} = commentsAdapter.getSelectors((state) => state.commentState);
+
+
+
+*initialState: commentsAdapter.getInitialState(), to initialize state in adapter with ids and entities
+
+*if you need to add properties in your state like status etc, pass them inside getInitialState
+
+
+
+
+=====================
+main difference is, in createEntityAdapter, you store state data in an id array and entities object
+- with built in crud operations to modify state and select items from state.
+- getSelectors built in when using entity adapter written above
+
+--prebuilt reducers and selectors for performing CRUD operations on a normalized state like setall upsertOne
+
+
+Redux Toolkit's createEntityAdapter API provides a standardized way to store your data in a slice by taking a collection and putting it into the shape of { ids: [], entities: {} }. Along with this predefined state shape, it generates a set of reducer functions and selectors that know how to work with the data.
+
+
+so it think use entityAdapter to normalize state. arrange data / state efficiently and being able to modify them.
+
+
+
+
+---- i think somehow everything is clear for now. at least the basic of using entity adapter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
