@@ -1,0 +1,88 @@
+DAVE GRAY MERN STACK - TECHNOTES
+
+
+KEY Features and Tech Used:
+
+---FE----
+
+•React Router v6 
+- nested routing
+- wrapper components / route
+- Outlet
+- Public routes , Protected Routes
+
+• RTK Query
+- central api slice => create api
+- extended api slices for other features (inject endpoints)
+- entity adapter 
+- builder.query and builder.mutation
+- onQueryStarted
+
+-providesTags and invalidatesTags for data refetch
+
+Data Revalidation on useQuery:
+pollingInterval: 10000, 
+refetchOnFocus: true,
+refetchOnMountOrArgChange: true,
+
+
+• RTK
+- createSlice
+- selectors and actions
+- global state, save data like Auth Data.
+
+
+•Persist login on refresh --
+
+what is keeping me logged in? cookies or token? or local storage?
+-- first is persist true in local storage
+-- 2nd is token - if persist is true, token gets refreshed with refresh endpoint
+
+
+TechNotes
+-if persist value in local storage is true, then user refreshes
+-PersistLogin component remounts, but token from global state is cleared.
+- useEffect in PersistLogin will run, calling the refresh endpoint.
+
+- refresh endpoint uses refreshToken stored in cookie.
+
+- if this refresh is successful, will return a new access token and save to global state.
+- allowing persist of login after refresh.
+
+
+EDS 
+- userProfile Class Object always initialized.
+- gets data from local storage
+- on every refresh, just uses getItem on local storage every time to get credentials and store in userProfile Class object
+
+
+So, EDS uses local storage. Tech notes uses refresh token and cookie, also local storage somehow.
+
+
+
+•ROLES Route Restriction
+-Protected routes wrapper passing in array of allowed roles, similar to EDS
+
+
+
+• Custom Hooks
+
+
+
+---BE----
+• REST API
+-controllers, routes, views
+
+• MONGO DB
+- model
+
+• JWT ACCESS TOKEN REFRESH TOKEN
+
+• MIDDLEWARES - VerifyJWT, loginLimiter, logger , errorHandler
+
+
+
+
+
+
+
