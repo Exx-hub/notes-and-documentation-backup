@@ -1,0 +1,55 @@
+REACT CONCEPTS TO STUDY
+
+1. react 18 transition vishwas video and react 18 blog
+
+2. react suspense
+
+3. react masterclass
+
+4. react error boundary
+
+5. webpack
+
+6. REACT 18 NEW STUFF:
+lazy loading
+code splitting
+suspense
+concurrency
+webpack?
+
+7. MASTER REACT HOOKS
+
+8. REDNER PROCESS
+
+9. REACT TESTING
+
+10. ADVANCED TOPICS IN REACT
+- HOCs
+- advanced hooks
+- custom hooks
+- render props
+- forwardRef
+- React Memo
+
+11. useImperativeHandle
+
+use when using modals to prevent re-renders of parent component when modal is toggled.
+
+use this especially if parent component has a lot of child components getting re-rendered every time modal is toggled.
+
+1. create ref using useRef
+2. pass to custom component 
+3. use ForwardRef on custom component 
+4. use useImperativeHandle and create function to toggle modal
+5. add state in custom component for visibility toggle
+6. use created function in parent component
+7. will not cause a re-render of the parent when modal is toggled.
+
+
+12. useState vs useRef
+
+useRef - preserve value between renders
+
+in forms, use useRef if you dont need re-renders such as in validation of forms etc.
+
+if you need such, also if you need the value of input on every key stroke, useState is better

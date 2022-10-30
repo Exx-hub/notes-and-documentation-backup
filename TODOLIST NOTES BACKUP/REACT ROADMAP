@@ -1,0 +1,49 @@
+REACT ROADMAP
+
+==Fundamental Topics==
+
+CRA
+JSX
+COMPONENTS
+PROPS VS STATE
+CONDITIONAL RENDERING
+COMPONENT LIFE CYCLE
+LIST AND KEYS
+COMPOSITION VS INHERITANCE
+BASIC HOOKS
+
+==Advanced Topics==
+
+CONTEXT
+REFS
+RENDER PROPS
+HOOKS
+HIGHER ORDER COMPONENTS
+PORTALS
+ERROR BOUNDARIES
+FIBER ARCHITECTURE
+
+==Eco System Pt1==
+
+FORMS
+ -React hook form, formik, final form
+
+TESTING
+-Jest, React testing library, Cypress
+
+STATE MGT
+-Redux, Context Api
+
+==Eco System Pt2==
+
+Styling
+
+Routers
+
+SSG
+-next gatsby ssr
+
+API CALLS
+-react query, use-http, axios
+
+MOBILE - REACT NATIVE

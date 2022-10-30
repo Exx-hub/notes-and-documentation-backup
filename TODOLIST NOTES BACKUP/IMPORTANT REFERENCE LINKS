@@ -1,0 +1,96 @@
+IMPORTANT REFERENCE LINKS
+
+
+++Typescript and react in depth blog
+
+https://devtrium.com/posts/react-typescript-using-generics-in-react
+
+https://devtrium.com/posts/react-typescript-how-to-type-hooks
+
+++React TS Events
+
+https://devtrium.com/posts/react-typescript-events
+
+++React Best PRactices
+
+https://www.freecodecamp.org/news/best-practices-for-react/?fbclid=IwAR3htIRyGRcdXEm_9ZK3z-jR8mVIIyjRGOR4Q9rR2HwlGH5_oeVke1fNXSw
+
+++How To Mock API Calls in JEST
+
+https://dev.to/zaklaughton/the-only-3-steps-you-need-to-mock-an-api-call-in-jest-39mb
+
+++React Jargons and concepts
+
+https://www.youtube.com/watch?v=bZRqmobuJvM
+
+++React 18 Glossary Dan Abramov
+
+https://github.com/reactwg/react-18/discussions/46
+
+++useEffect uses and cleanup and mounted
+
+https://www.youtube.com/watch?v=QQYeipc_cik&list=WL&index=4
+
+https://www.youtube.com/watch?v=dH6i3GurZW8&t=102s
+
+https://dev.to/otamnitram/react-useeffect-cleanup-how-and-when-to-use-it-2hbm
+
+++Derived State
+
+https://www.youtube.com/watch?v=tz0fDABt67g&list=WL&index=36&t=116s
+
+++How is state merged in class components and in functional components
+
+https://imrobinkim.medium.com/how-state-updates-are-merged-in-react-e07fc669fec2
+
+++React Testing codevolution
+
+
+++response cookies and request cookies interaction
+
+https://chnm.gmu.edu/digitalhistory/links/cached/chapter5/link5.29b.cookies.html
+
+Missing cookie: 
+https://medium.com/swlh/7-keys-to-the-mystery-of-a-missing-cookie-fdf22b012f09
+
+Client-Side Authentication:
+https://www.section.io/engineering-education/client-side-auth-with-express-cookie-parser/
+
+Cookies from server set using:
+
+Set-Cookie or Res.cookie
+
+are sent to the client with the response object. path is set. "/" for example.
+
+then all requests to "/" shall have cookie in the request object. which is accessible with req.cookies in the server.
+
+++Persist Login blogs
+
+https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/
+
+https://blog.logrocket.com/persistent-login-in-react-using-refresh-token-rotation/
+
+++invisible link to skip to main content for screen readers
+
+https://www.youtube.com/watch?v=VUR0I5mqq7I&list=WL&index=2
+
+++React Lazy component loading , code splitting, suspense
+
+https://www.youtube.com/watch?v=-4fyyyQjsz8&list=WL&index=6
+
+++Backend Ninja Roadmap
+
+https://medium.com/@dash.ps/backend-roadmap-to-master-nodejs-c508742ab74f
+
+++CONSUMING APIS
+
+https://www.freecodecamp.org/news/how-to-use-rest-api/?fbclid=IwAR0jfXGRaF8PLUlKJbyRjZE5eoW2V_wrtE2ysOJPwMAea01on0quU0NLmoE
+
+
+++JS V8 faster initialization
+https://morioh.com/p/f7120a1a66a2?f=5cb7d89d660c8335951ca454&fbclid=IwAR1F--BKHJ1uA0creqst_h5JhyGYkbrZIobnjv8oHg-DqmBro9Wqk3tyD-s
+
+++MISC REACT
+
+https://alexkondov.com/tao-of-react/
+https://www.patterns.dev/

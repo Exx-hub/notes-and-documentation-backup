@@ -1,0 +1,49 @@
+CONCEPTS ALREADY STARTED
+
+1. PROPTYPES
+
+2. REACT RENDER
+
+3. REST API
+
+consuming apis! -working with postman - query/params/body/data methods
+
+
+4. NEXT JS
+
+5. TYPESCRIPT
+
+6. HOOKS
+
+useCallback
+custom hooks
+
+https://kentcdodds.com/blog/useeffect-vs-uselayouteffect
+
+--not so commonly used but in some cases useful:
+useDebugValue
+useImperativeHandle
+useLayoutEffect
+
+useImperative handle - confirmed. useImperative handle for modals so that state can be placed in custom component,
+and will not cause re-render of parent component when modal is toggled
+
+7. REDUX TOOLKIT
+
+8. RTL / JEST
+
+9. RTK QUERY / USESWR / REACT QUERY
+
+10. TOOLS: REACT DEV TOOLS, REDUX DEV TOOLS, CHROME DEV TOOLS
+
+11. ****understanding http requests in general and using axios. and configs headers etc.
+
+12. CUSTOM HOOKS
+
+13. CS50
+
+14. REACT BETA DOCS
+
+15. REACTATHON PLAYLIST
+
+16. NEXT AUTH
