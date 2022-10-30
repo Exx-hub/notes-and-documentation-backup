@@ -1,0 +1,120 @@
+October 29, 2022
+
+collated qualifications for react dev openings:
+
+-- tick out as much as you can :) if not study. based study on these?
+
+
+5 years
+3 years experience - III
+2 years - I
+6 months - 2 years
+1 year
+
+
+ReactJS - obviously lahat react
+
+============================
+in demand that i already know, but i can review these:
+
+HTML - IIIIIII
+CSS - IIIIIII
+JS - IIIIIII
+
+NextJS -III
+
+redux - IIIII
+
+rest API - IIII
+consuming APIS - III
+
+react router - II
+React Hooks- advanced hooks**********
+-render props, HOCS, advanced react patterns***
+reactjs lifecycles
+reusable components
+
+git - III
+
+agile/scrum development methodologies - III
+
+responsive user interface - II
+SASS - II
+bootstrap
+material ui
+
+documentation skills
+
+
+=============================
+in demand that i know somehow but need more work on:
+
+NodeJS - IIII
+Typescript both FE and BE - II
+AJAX (axios request) - II
+
+mongodb
+
+
+tailwindCSS*
+CSS-in-JS*
+
+==============================
+in demand that i need to study:
+
+graphql* - IIII
+mysql* - II
+figma design knowledge*
+
+React NAtive - IIII
+expo*
+EAS react native*
+TS in react native
+
+
+JS OOP*
+DOM and SHADOW DOM*
+
+webpack*
+babel*
+storybook*
+
+=================================
+good add-ons i can study:
+
+Docker*
+
+token-based authentications
+
+end to end development
+
+===================================
+misc:
+
+Firebase*
+FHIR?*
+Apollo/ relay*
+Gatsby*
+PHP* - II
+VUE*
+LARAVEL*
+flux*
+
+massive parallel process MPP*
+
+modular microservices instead of monolithic approach*
+
+shopiyfy and Big-commerce SaaS platforms*
+
+
+===========================================
+review before getting interviewed:
+
+callback hell and possible solutions
+render props - vishwas
+render props vs custom hooks
+HOCs - vishwas
+advanced hooks
+JS OOP*
+DOM / Virtual DOM
+

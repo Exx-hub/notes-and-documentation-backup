@@ -1,0 +1,399 @@
+STUDY FOCUS:===============================================================================================
+left wrist - </> tattoo
+right wrist - react favicon tattoo
+
+BUY mommy origin set when job transfer! first thing to buy!
+
+
+
+JAVASCRIPT MASTERY
+REACT
+NEXT
+RN
+NODE
+all of these can use - TS
+SASS tailwind
+redux rtk
+react testing library/jest
+
+react tools in browser
+react dev tools know how
+
+TEST GORILLA test react skills!!
+
+react18
+react under the hood - also react hooks need to master
+react router v6
+
+react query/ useSWR
+graphql / 
+aws?
+
+nestjs
+intricasies of react like strict mode? reportwebvitals? web pack? server side rendering?
+consuming apis! -working with postman - query/params/body/data methods
+
+github pages?
+
+
+at least some design principles - web design / SASS / tailwind
+
+ci/cd continuous integ
+-REMIXJS
+
+-beginner's guide to aws certification - pdf in email
+
+--look at job openings / job descriptions and check what you lack
+--look at react masterclass notes for next steps
+-learning the basics of HTTP, and how code gets from your server to an end client**
+
+-explore docker
+-create a mobile app. and upload to google play
+
+============================================================================================================
+
+my developer roadmap:==============================================================================================
+
+1. Master React
+  - react under the hood, everything about the process, code flow, etc
+  - mastering hooks
+  - webpack
+  - testing - JEST and react testing library
+  - framework - NextJs, Graphql
+  - redux / rtk
+  - http and rest apis - how it works
+  - NPM
+  - chrome dev tools - cookies local storage network http procotols etc
+  - react developer tools
+  - redux dev tools
+  - consuming apis / working with apis
+  
+2. Node JS
+  - basic express server, http
+  - express, nestjs
+  - should also know the basics of backend development through node js.
+  - understand basics
+  - if future job requires a lot of backend, i already have the basics
+  - further http protocol and rest apis
+  
+3. TYPESCRIPT
+  - additional value as a developer
+  - usable in react and node
+  - some companies use it on everything so good to know this
+  
+5. WEB DESIGN BASICS
+  - tailwind css
+  - component libraries
+  - advanced css / SASS
+  -figma
+  
+6. Mobile Development
+  - REACT Native
+  - web dev and mobile dev
+  
+7. AWS
+
+8. web in general http
+
+9. GIT
+  - ci/ cd pipeline / intergration
+
+
+so basically a REACT DEV,know NEXT,has NODE knowledge and also a RN Mobile DEV. with TS. and basic web 3.
+REDUX AND JEST!
+-javascript focus!
+
+====================================
+
+issue in mobile view eds: user-scalable=no if they want no white space below
+force long size = pageStyle="@page { size: 8.5in 13.6in}"
+
+=======================================================
+--if no current study, just do all dave gray vids and vishwas vids
+-- also do watch later vids in yt playlist
+
+-frontend happy hour
+
+-answer one grepper answer either you know it or look it up
+-solve one problem in hackerrank or codewars or something edabit
+-https://beta.reactjs.org/
+https://developerquiz.org/ -- once in a while
+https://www.30secondsofcode.org/
+
+=====================================================
+as of October 29, 2022 - evaluation:
+
+current status based on react job qualifications:
+good standing. => i am on track. :)
+
+just review on first tier - react, next etc.
+
+and
+
+need work on node and ts
+
+need to learn graphql 
+need to learn mySQL*
+storybook, webpack, babel, react under the hood.
+
+the others, need to start learning but not urgent.
+
+base learning on listed tiers and roadmap.*
+
+
+Regardless of what route you choose, I’d heavily recommend learning the basics of HTTP, and how code gets from your server to an end client, though. That knowledge is invaluable, whether you’re working on the front end or the back end.
+
+==========================================================
+
+watch later vid ts?
+
+
+== MONDAY 
+
+https://www.youtube.com/watch?v=EZil2OTyB4w
+
+tailwind playlist
+
+react ts vite web dev
+https://www.youtube.com/watch?v=bAJlYgeovlg&list=WL&index=2
+
+== TUESDAY
+node ts
+https://www.youtube.com/watch?v=02qV2icZahk&list=WL&index=3&t=3s
+
+
+== WED office day
+
+React Coding Challenge
+https://hackernoon.com/top-3-coding-challenges-for-mid-level-react-developers
+
+==============================================================================================
+
+
+--dave gray TAILWIND or CSS Framework - already started.
+
+finish vishwas testing playlist
+
+REACT TESTING 
+
+problem was mocking... hope vishwas solves that..
+
+// OWN App Testing - moved here, further testing learning was required
+test pokedex -- think small. pass props. mock results?
+figure out what needs to be tested.
+functions? events? rendered child components?
+--get notes from aug 12 and test them out
+
+
+render props if not yet clear
+https://blog.logrocket.com/react-render-props-vs-custom-hooks/
+
+
+SSTORYBOOK - 
+https://snipcart.com/blog/storybook-react-tutorial-example
+
+jherr https://www.youtube.com/watch?v=NgkYH97Z3nk 
+
+https://storybook.js.org/docs/react/get-started/whats-a-story
+
+https://snipcart.com/blog/storybook-react-tutorial-example
+
+
+REACT NATIVE TIME? finish react first then react native
+https://www.youtube.com/watch?v=VozPNrt-LfE
+
+SQL
+
+find custom hooks tuts => functon, that returns something? what do you need done and returned?
+
+AWS
+--look into aws learning structure now that you have an idea of EC2 and S3 bucket
+
+GRAPHQL
+
+more work on node and TS*
+
+figma*
+
+https://www.youtube.com/playlist?list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q - maximillan node rest api playlist
+** side note: before going to node with TS => master or be good enough with node first. will come back to this.!
+
+GIT CI/Cd pipeline workflow
+
+ssh and ssh setup? ssh??
+
+https://blog.logrocket.com/micro-frontend-react-next-js/ - microfrontend
+
+using env vars in react app/ next app - deployment
+
+understand fully async await and in react examples
+
+https://thoughtbot.com/blog/using-redux-with-react-hooks
+
+*GET Good with react performance*
+-find topics about this. entirely separate concept
+https://felixgerschau.com/react-rerender-components/
+
+lodash? lodash.throttle lodash.debounce
+
+
+anothter nextjs tuts but do it with TS
+
+
+
+
+BROWSER/WEB
+How http headers work? as was said in javascript jabber
+
+browser know-how? methods in the browser using javascript***
+debuggin javascript
+dev tools tabs like application,network, sources etc
+browser storage - local storage, cookies etc
+basic web cdn http ,browser
+
+
+preflight requests
+https://www.baeldung.com/cs/cors-preflight-requests
+
+AXIOS
+-review notes on react qeury
+
+****understanding http requests in general and using axios. and configs headers etc.
+new AbortController() == used in fetching. to have control to cancel or continue fetch
+--if using axios, equivalent is axios.cancelToken.source
+
+working with network and http shit. research more about this
+and apis...
+--axios interceptor
+--abort controller? http?
+
+https://www.youtube.com/watch?v=Cyyh9G5E6II&list=PLC3y8-rFHvwjTELCrPrcZlo6blLBUspd2&index=25
+
+NEXT
+more next auth examples. next auth vs normal login api
+***dynamic layout or nested layout in nextjs component study further.
+
+on-demand ISR with nextjs
+
+
+BE
+BACKEND ROADMAP TUTORIAL - ***https://medium.com/@dash.ps/backend-roadmap-to-master-nodejs-c508742ab74f
+
+CS 101
+MIT intro to cs
+
+next in line:
+next codedamn* continuation
+videos on full stack next js apps
+
+how login is implemented in a react app? auth? or class based like eds? jwt , security
+investigate class implementation on movon projects - useProfileObject
+dave gray rtk
+vishwas rtk query
+using redux to fetch all data first hand and store all data and use data throughout app?
+axios - composition of an http request - headers? body? data? accept? make a documentation
+come back to udemy nextjs module summary as a refresher....
+
+udemy webpack fundmentals
+
+https://blog.logrocket.com/using-typescript-with-react-tutorial-examples/ -- react ts from webpack
+study this after studying about webpack
+
+javascript algorigthms codevolution
+https://levelup.gitconnected.com/javascript-algorithm-using-objects-for-lookups-d28f34a59504
+ 
+-run through this. isa isahin yung advanced topics ng javascript. do this after jest. -https://www.youtube.com/watch?v=Ar9mGfmsgtM&list=WL&index=2&t=94s
+
+class component - constructor? super? props? - protoype? inheritance? encapsulation? MVC?
+axios instance vs just axios? 
+
+
+
+
+https://www.youtube.com/watch?v=NqdqnfzOQFE&list=PL0Zuz27SZ-6PSdiQpSxO9zxvB0ns6m3ta&index=8
+
+
+create hooks cheat sheet****
+hooks review overall - make documentation while studying this --- cheat sheet - search for cheat sheet
+
+
+react docs 
+-main concepts
+-advanced guides
+
+React docs beta - do all challenges!
+
+https://courses.webdevsimplified.com/react-hooks-simplified 
+
+The Complete Guide to Advanced React Component Patterns
+componentDidCatch used in error handling?
+react-error-boundary library 
+
+
+REMIX JS
+
+custom hooks 
+udemy web development 2022
+
+review all notes and make roadmap check
+check current standing in react. all there is to react check where youre at
+
+react server components
+
+deploying to vercel? getting a domain?
+how to deploy folders in github like group of projects
+https://github.com/hoangvvo/nextjs-mongodb-app
+
+aug9,'22 NOT YET. this is totally a different framework. not just yet. or find more basic or simple tuts first
+ready to start and take a look at nest js? https://www.youtube.com/playlist?list=PL_cUvD4qzbkw-phjGK2qq0nQiG6gw1cKK
+
+
+interview prep
+tech exam prep javascript
+
+
+
+
+
+
+
+
+
+*********************
+
+
+
+back up branch bus number:
+feature/busNumberUpdate/build186
+
+
+https://www.cargomovon.com/server/booth-user/#/book-ticket
+https://www.cargomovon.com/server/booth-user/#/booking-details/623960e5985ba850372e495c
+
+
+CONDO SALE DETAILS:===================================================================================
+
+Unit:
+Tower D, unit 1219 12th Floor
+1-BR-B, 30.25 sqm
+
+Total Contract Price: P3,043,107.10
+Total Deposit: 10% = P304,310.71
+
+Remaining Balance for financing: P2,738,796.39
+
+Parking:
+
+Tower C, Basement Parking
+
+Total Contract Price: P870,000
+Total Deposit: 10% = P87,000
+
+Remaining Balance for financing: P783,000
+
+
+
+CAR UPDATES:==============================================================================================
+
+
+

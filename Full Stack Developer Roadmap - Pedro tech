@@ -1,0 +1,66 @@
+Full Stack Web Developer Road Map - Pedro Tech
+
+October 28, 2022
+
+1. html css js
+
+
+2. DOM manipulation with js
+	- data fetching
+	 
+3. Version Control
+
+4. Backend
+   - node js
+   - api
+   - https methods GET POST PUT DELETE
+   - database => mongodb or mySQL
+   - ORM / ODM mongoose / prism
+   - CRUD application Create Read Update Delete => create a crud project to practice BE
+   
+5. FULL STACK
+   - mix FE and BE
+   - example => create a FE app and consume own API made
+   - very simple website. 
+   
+6. REACT JS
+	- learn the basics
+	- understand why react is important
+	- create projects
+	- make a social media platform? fullstack. login logout post something follow someone etc.
+	
+
+7. CSS Framework - Tailwind or other?
+
+8. TYPESCRIPT
+-use in all projects from here on out.
+
+9. ADVANCED REACT
+- advanced hooks => useMemo useCallback etc. custom hooks
+- react query
+- redux / rtk
+- scalability
+- optimization
+- webpack?
+- next js
+
+*this stage will span throughout your whole career. you will never know anything.
+
+10. TESTING
+- unit testing jest RTL
+- cypress E2E testing
+
+11. Explore the field
+- choose what you wanna learn next
+
+ex. react native?, graphql, nextjs, nestjs, other backend?
+
+
+***node, sql, tailwind, TS 
+
+
+
+
+
+
+
