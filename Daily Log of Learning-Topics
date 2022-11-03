@@ -161,7 +161,128 @@ Sep 6  Office / React Docs Challenges / custom hooks
 Sep 7  Rest Day
 Sep 8  Mern Stack Dave Gray Day 1
 Sep 9  MERN STACK DAVE GRAY Controllers and Routes
+Sep 10 MERN Stack Dave Gray -- challenge, note controller and route mongodb too
+Sep 11 Mern Stack Dave Gray --- review and mongoose-sequence autoincrement plugin
+Sep 12 MERN Stack --- react router v6 --- routing config
+Sep 13 MERN Stack Dave Gray --- Redux part and RTK Query w Forms
 
+Sep 14 REDUX / RTK DAVE GRAY    => MERN Stack Dave Gray --- paused   / ZUITT AWS COURSE DAY 1
+
+Sep 15 - 22 REDUX / RTK DAVE GRAY
+      
+Sep 23 - Dave Gray video 6 - RTK Query
+sep 24-25 Dave Gray => converting blog app with rtk cAT into using rtk query
+sep 26 Finish Blog Project convert to rtk query 
+sep 27  React Redux Login Dave Gray Vid number 9 --- unfinished. need backend for this. doing mern again now.
+sep 28 Office - research - clear up on questions createEntityAdapter, rtk query, etc.
+sep 29 create entity adapter playlist -- continuation of mern stack dave gray
+
+sep 30 - Oct 7 Finishing Mern Stack Dave Gray 
+Oct 8 - Review of recent topics learned
+
+oct 9-26 Mom's PH and SG hoiday
+
+oct 27 - server of login authentication project
+
+oct 28 - webdevsimp local state / pedro code splitting video / pedro full stack dev roadmap
+oct 29 - collate job openings and gauge knowledge standing
+
+oct 30 - render props* , tailwind 2nd vid, backup todo list notes
+
+nov 1 - tailwind playlist dave gray
+
+nov 2 - tailwind project deployment / web dev simp react ts
+
+nov 3 - react tailwind codecommerce
+
+=============================================================================================================
+Current Tech Stack:
+
+ReactJS w ecosystem
+NextJS
+Typescript
+NodeJs
+Redux / RTK
+RTL and JEST
+TailwindCSS / SaSS / Vanilla CSS
+*react native
+*graphql
+*sql
+
+
+=============================================================================================================
+in approx 8 months:
+
+Node js - mas comfy now than last year
+TS - mas comfy now than last year
+NextJS - mas comfy now than last year
+Advanced hooks - mas comfy now than last year
+React Mounting and rendering - mas comfy now than last year
+Chrome dev tools - mas comfy now than last year
+cookies and localstorage - mas comfy now than last year
+MERN STACK - mas comfy now than last year
+Custom Hooks - mas comfy now than last year
+
+RTK - didnt know this last year
+RTL and JEST - didnt know this last year
+React Query / RTK Query / useSWR - didnt know this last year
+Tailwind CSS - didnt know this last year
+React Render - didnt know last year
+
+if you think this is kulang then spend more time studying.
+or create a better learning structure.
+pero as per the roadmap, shoot naman. just need more of more i guess. imposter syndrome din.
+
+===============================================================================================================
+
+Stuff I learned this year that I didnt know before:
+
+1. NodeJS - a little more comfortable with node.
+
+2. TS - i know Basics and can use and read TS code now.
+
+3. Testing - basics of testing except for mocking.
+
+4. REACT
+- render process
+- advanced hooks - useMemo useCallback React.memo forwardRef
+- deployment 
+
+5. NextJS - intermediate
+- next auth
+- ssr
+- client side
+
+6. Redux Toolkit
+
+7. React Query / RTK Query
+
+8. localStorage and cookies
+
+9. Testing - RTL and Jest
+
+10. JWT , persist login
+
+11. tailwind css
+
+12. Chrome Dev Tools
+
+13. A little AWS
+
+
+
+================================================================================================================
+
+Stuff i need to learn:
+
+-graphql
+-sql
+-react native
+-more node, ts, react, nextjs
+
+advanced react patterns like render props, hocs, advanced hooks etc.
+
+================================================================================================================
 
 
 
