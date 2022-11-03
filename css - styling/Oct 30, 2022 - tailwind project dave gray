@@ -1,0 +1,121 @@
+October 30, 2022
+
+1. npx tailwindcss init -- create a tailwind config
+
+2. set up folder structure
+
+3. added images
+
+4. in tailwind.config edited content. ['./build/*.html']
+
+5. npm init - to intialize a package.json
+
+6. npm i -D prettier-plugin-tailwindcss => devdependency
+
+7. instead of the command in terminal, add to package.json script
+-- also add prettier script
+
+"scripts": {
+    "tailwind": "npx tailwindcss -i ./src/input.css -o /build/css/style.css --watch",
+    "prettier": "npx prettier --write **/*.html"
+  },
+  
+  
+npm run tailwind => will  run the script and watch and compile changes.
+
+
+8. create index.html and link compiled style.css
+
+9. apply classes just like bootstrap? check website for reference. havent found good use or purpose for tailwind yet...
+
+====
+media query for setting each sections height like 100 vh
+
+can do this even without tailwind
+
+
+added in config file
+
+extend: {
+      screens: {
+        widescreen: { raw: "(min-aspect-ratio: 3/2)" },
+        tallscreen: { raw: "(max-aspect-ratio: 13/20)" },
+      },
+  
+   
+      
+added in input.css
+
+@layer utilities {
+  .section-min-height {
+    min-height: calc(100vh - 68px);
+  }
+}
+
+68px is the height of the navbar
+
+@media (min-aspect-ratio: 3/2) {
+  .widescreen\:section-min-height {
+    min-height: calc(100vh - 68px);
+  }
+}
+
+@media (min-aspect-ratio: 1/2) {
+  .tallscreen\:section-min-height {
+    min-height: calc(100vh - 68px);
+  }
+}
+
+============ 
+
+added customcolor too => use as text-customcolor-light
+
+added keyframes and animations in config file:
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./build/*.html", "./build//js/*.js"], //content: ["./build/**/*.{html,js}"], or this
+  theme: {
+    extend: {
+      colors: {
+        customcolor: {
+          light: "#fef4e4",
+          DEFAULT: "#ffefd5",
+          dark: "#fee5bc",
+        },
+      },
+      screens: {
+        widescreen: { raw: "(min-aspect-ratio: 3/2)" },
+        tallscreen: { raw: "(max-aspect-ratio: 13/20)" },
+      },
+      keyframes: {
+        "open-menu": {
+          "0%": { transform: "scaleY(0)" },
+          "80%": { transform: "scaleY(1.2)" },
+          "100%": { transform: "scaleY(1)" },
+        },
+      },
+      animation: {
+        "open-menu": "open-menu 0.5s ease-in-out forwards",
+      },
+    },
+  },
+  plugins: [],
+};
+
+
+arbitrary values
+
+text-white  => predefined
+
+if you want a custom one or a color exactly like what you want
+
+text[crimson]
+
+w-8 (32px 2rem)
+
+=> w-[123px]
+
+
+animations were cool!
+

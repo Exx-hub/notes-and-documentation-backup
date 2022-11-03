@@ -1,0 +1,36 @@
+Nov 3, 2022
+
+React + Tailwind code commerce
+
+
+1. create react app
+
+2. clean up boilerplate
+
+3. install tailwind
+- in tailwind website => framework guide and choose framework (create-react-app)
+
+ -- npm install -D tailwindcss postcss autoprefixer
+ -- npx tailwindcss init -p
+    -this will create tailwind.config.js and postcss.config.css
+ 
+4. configure tailwind.config.js
+- in content =>
+
+ content: ["./src/**/*.{js,jsx,ts,tsx}"],
+ 
+5. Add the Tailwind directives to your CSS
+- in index.css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+6. start using tailwind
+
+
+verdict.
+
+good to know. seems a lot of people use it. but for me it's kind of the same with vanilla css. kinda messy for me.
+havent really seen the purpose of using tailwind. but i kind of know how to use tailwind now. basically just css.
+will keep an eye out for tailwind esp if really needed in most jobs. at least i know the basics of it now.

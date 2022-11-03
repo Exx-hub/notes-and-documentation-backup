@@ -1,0 +1,65 @@
+October 28,2022
+
+Tailwind CSS - Dave Gray
+
+
+
+npx tailwindcss init -- create tailwind config file
+
+
+create src folder => create input.css
+ -in input.css:
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+
+create build folder and index.html file in it
+
+in tailwind.config.js
+ - add build folder and html paths in content
+ 
+ 
+ 
+ ex.
+ 
+ /** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./build/*.html'],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+in terminal, run:
+
+npx tailwindcss -i ./src/input.css -o ./build/css/style.css
+
+-which means input is at src input.css and output is at build/css style.css
+
+
+**this is kinda like ts wherein ts is compiled into javascript. here, tailwind css is compiled into css...?
+
+
+--add link tag with style.css in your index.html
+
+npx tailwindcss -i ./src/input.css -o ./build/css/style.css --watch
+
+-can also use --watch just like in TS to watch all changes and auto compile any classes you add to your html
+
+
+
+*****in input.css
+
+-first three lines are the build in tailwind classes and styles
+-below is a custom style that you can apply to your html
+-just add the classname to your html and it will be applied.
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.radial-blue {
+  background: radial-gradient(lightyellow, skyblue);
+}
