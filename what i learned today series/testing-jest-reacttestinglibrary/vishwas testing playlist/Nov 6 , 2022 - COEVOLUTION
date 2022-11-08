@@ -1,0 +1,117 @@
+Nov 6 7 8, 2022
+
+RTL Codevolution
+
+Query Multiple Elements
+
+
+Find multiple elements in the DOM
+
+getAllby query 
+=> returns an array of all matching nodes for the query and throws an error if no elements match or if there are multiple matches
+
+
+
+TEXTMATCH
+-first argument passed to queries. looks like a string, but can be string regex or function
+
+const ulElement = screen.getByRole("list");
+const pElement = screen.getByText("All fields are mandatory");
+
+const pElement = screen.getByText(/All/i); --- regex
+
+const pElement = screen.getByText((content) => content.startsWith("All")); --- function
+
+
+
+QUERYBY 
+-returns matching node and returns null if no elements match, not error
+-useful for asserting an element that is not present
+-also throws an error for more than one match
+
+QUERYALLBY
+-returns an array of all matching element and empty array if no match found
+
+
+FINDBY
+-for element that are not present initially but soon appears after some delay
+-like data that is fetched after some time
+
+--- returns a Promise which resolves when an element is found which matches the query
+--- the promise is rejected if no element is found or if more than one element is found after a default timeout of 1000ms
+
+FINDALLBY
+
+--- returns a Promise which resolves to an array of elements when any elements are found which match the given query
+--- the promise is rejected if no element is found after a default timeout of 1000ms
+
+
+---need to use async await for both findby and findallby
+
+
+======
+MANUAL QUERIES => not recommended, not visible to users like id or classnames
+ 
+ 
+   test("login button gets rendered - test using DOM", () => {
+    render(<Skills skills={skills} />);
+
+    const loginBtn = document.getElementById("login-btn");
+
+    expect(loginBtn).toBeInTheDocument();
+    });
+
+
+
+=========
+DEBUGGING
+
+
+
+ screen.debug() --- both to check the structure
+ 
+ this renders the html in the component?
+ 
+ screen.getByRole("") --- both to check the structure
+ 
+ to be able to view all available roles in the component
+
+can also use log roles
+
+
+test("start learning button gets rendered after 1 second", async () => {
+    const view = render(<Skills skills={skills} />);
+    logRoles(view.container);
+
+    const startLEarningBtn = await screen.findByRole(
+      "button",
+      {
+        name: "Start Learning",
+      },
+      { timeout: 1200 } // adjust the default timeout (1000ms) if needed, for longer things like fetching data
+    );
+
+    expect(startLEarningBtn).toBeInTheDocument();
+  });
+
+
+=====
+TESTING PLAYGROUND google extension
+
+=================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

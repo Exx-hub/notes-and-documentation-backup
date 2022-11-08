@@ -1,0 +1,35 @@
+11/8/22
+
+MSW Error Handling
+
+-- in your component and error message in a p tag is displayed for errors in api calls.
+-- how to test if error message is indeed displayed when something goes wrong with your fetch request
+
+--- in your handler, it is set to always return status 200 and some mocked data.
+--- so to simulate an error response, we need to
+
+   // reset the handlers set in main handlers file, this time to throw an error, response with status 500
+  // so basically mocking an error response from a fetch request
+  //handler below applies only to this single test
+  
+  test("renders error", async () => {
+    // reset the handler
+    server.use(
+      rest.get(
+        "https://jsonplaceholder.typicode.com/users",
+        (req, res, ctx) => {
+          return res(ctx.status(500));
+        }
+      )
+    );
+
+    
+    render(<Users />);
+    const errorMsg = await screen.findByText("Error fetching users");
+    expect(errorMsg).toBeInTheDocument();
+
+    // screen.debug();
+  });
+  
+  // after resetting the handler, proceed with finding the error text
+  // true enough error element is present

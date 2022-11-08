@@ -1,0 +1,40 @@
+11/7/22
+
+MOCKING FUNCTIONS
+
+--- testing code without actually having to worry about the implementation of the function..
+
+- we just need to make sure that the handlers functions are called when buttons are clicked?
+- we should not really care how many it increments or decrements...
+
+
+ test("handlers are called", async () => {
+    const user = userEvent.setup();
+    const incrementHandler = jest.fn();
+    const decrementHandler = jest.fn();
+    render(
+      <CounterMock
+        count={0}
+        handleDecrement={decrementHandler}
+        handleIncrement={incrementHandler}
+      />
+    );
+    const incrementBtn = screen.getByRole("button", { name: "Increment" });
+    const decrementBtn = screen.getByRole("button", { name: "Decrement" });
+    expect(incrementBtn).toBeInTheDocument();
+    expect(decrementBtn).toBeInTheDocument();
+
+    await user.click(incrementBtn);
+    await user.click(decrementBtn);
+    expect(incrementHandler).toHaveBeenCalledTimes(1);
+    expect(decrementHandler).toHaveBeenCalledTimes(1);
+  });
+  
+  
+---these are like just placeholder functions that does nothing?
+--- placeholder functions just to conditionally render the buttons?
+
+
+but what if you fire a userEvent click?
+-- that is what we are asserting. that the functions, whatever they do, have been called when buttons are clicked...
+
