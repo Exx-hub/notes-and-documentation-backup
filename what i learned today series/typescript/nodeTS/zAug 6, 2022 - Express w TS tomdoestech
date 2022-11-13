@@ -1,0 +1,46 @@
+Aug 6, 2022
+
+Express w TS - TomDoesTech
+
+----major takeaway => need to master or be good enough with node before doing node TS!!
+
+// @ts-ignore 
+=> to bypass ts error on next line. use this just for setting up the code first before implementing strict Typing
+
+
+1. tsc --init
+
+2. npm init
+
+3. mkdir src
+
+4. touch src/app.ts
+
+5. Install tsnode or ts-node dev and typescript as devdependencies
+
+---npm i -D ts-node-dev typescript @types/express @types/node
+
+6. Add in script in package.json
+
+-- "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+
+7. install express
+
+8. initial bootstrap and add the basic routes and express middleware
+
+9. type the request and response objects
+
+
+node express topics
+-basic bootstrap config
+-express.json to parse from request body
+-basic routes
+-response and request object
+-TS typing
+-route chaining
+-dynamic routes / route parameters
+- route handlers
+
+-middleware ==> function that gets called in the route that also has access to request and response objects.
+            ==> need to call next() to proceed.
+

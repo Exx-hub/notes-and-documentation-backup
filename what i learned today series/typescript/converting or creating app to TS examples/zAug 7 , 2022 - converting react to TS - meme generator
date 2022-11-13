@@ -1,0 +1,24 @@
+Aug 7, 2022
+
+converting meme generator react to TS
+
+
+tsc --init
+
+npm i typescript
+
+and types
+
+convert js to tsx
+
+
+***for css modules like in next js
+
+create Global.d.ts file in src
+
+then add declare module "*.module.css";
+
+error in importing should go away
+
+
+

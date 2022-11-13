@@ -1,0 +1,105 @@
+July 22-23, 2022
+
+ctrl + space to see vscode suggestions
+
+ts.config.js
+
+target - says what version of JS your TS files will be compiled into
+modules -
+rootDir - directory that contains our source files (TS files)
+outDir  - directory where then converted JS files will be stored
+
+tsc command will compile all ts files
+
+
+Debugging TS
+-enable sourceMap in tsconfig -- this will show how each line of ts code maps into js code
+
+
+
+
+
+// FUNDAMENTALS OF TS
+JS - number string boolean null undefined object
+TS - any unknown never enum tuple
+
+
+Arrays
+number[]
+string[]
+
+Tuples
+=> let user: [number, string] = [3, "alvin"];
+--try to keep your tuples to two values, like key value pairs.
+-- to avoid complication
+
+Enums
+
+// Enums
+const enum ShirtSizes {
+  xl = 100,
+  l,
+  m,
+  sm,
+}
+
+let mySize: ShirtSizes = ShirtSizes.xl;
+
+***adding const compiles into a more readable js code snippet
+
+
+
+Functions
+
+in ts.config - "noUnusedParameters": true,
+	      - "noImplicitReturns": true,  
+	      - "noUnusedLocals": true,   
+	      
+	      
+function calculateTax(income: number, taxYear: number): number {
+
+  if (taxYear < 2020) {
+    return income * 1.2;
+  }
+  // if does not meet condition, by default js will return undefined
+
+  return income * 1.3;
+}
+
+
+calculateTax(50_000, 2022)
+
+
+
+Objects
+Types
+Interfaces
+Unions
+Intersections
+
+// Literal Types
+type Quantity = 50 | 100;
+
+let quantity: Quantity = 100;
+
+// Nullable Types
+function greet(name: string | null | undefined): void {
+  if (name) console.log(name.toUpperCase());
+  else console.log("Hola");
+}
+
+greet(undefined);
+
+// Optional Chaining
+type Customer = {
+  birthday: Date;
+};
+
+function getCustomer(id: number): Customer | null {
+  return id === 0 ? null : { birthday: new Date() };
+}
+
+
+let customer = getCustomer(0)
+
+console.log(customer?.birthday)

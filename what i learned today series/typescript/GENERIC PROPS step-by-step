@@ -1,0 +1,35 @@
+GENERIC PROPS
+
+reference => typescript => react-hooks-ts-jackherrington
+
+// Type the props
+// 1. add type to props directly without creating props Type cause its confusing
+//- define props type directly
+
+// function GenericList({ items, render }: {items: string[], render: (item: string) => ReactNode} )  {
+
+// Add Generic to Component
+// 2. add Generic to function Component
+//   const GenericList = <T,> ({ items, render }: {items: any[], render: () => any}  ) => {
+
+// Convert type to Generic Type like in Function Component
+// 3. const GenericList = <T,> ({ items, render }: {items: T[], render: (item: T) => React.ReactNode}  ) => {
+
+// Create interface for the props you added Type to
+//4. {items: T[], render: (item: T) => React.ReactNode} into an interface
+// into
+// interface GenericsListPropsType {
+//     items: T[];
+//     render: (item: T) => React.ReactNode
+// }
+
+// but add Generic to the interface to be able to use Generics in the interface
+
+// interface GenericsListPropsType<T> {
+//     items: T[];
+//     render: (item: T) => React.ReactNode
+// }
+
+// 5. replace verbose explicitly typed props with interface created with T
+// const GenericList = <T,> ({ items, render }: GenericsListPropsType<T> ) => {
+// and that is the correct order or flow of generics with props and in component

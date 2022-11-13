@@ -1,0 +1,18 @@
+July 31, 2022
+
+
+Ts to JS basics => Jack Herrington
+
+
+introduced ts-node npm library
+
+
+Record utiliy type Reacord<string,boolean>    => arguments are what key value pairs it allows
+
+
+
+React Hooks w/ TS
+
+--right click go to type definition to look up type of certain function or variable
+-- example is useEffect
+

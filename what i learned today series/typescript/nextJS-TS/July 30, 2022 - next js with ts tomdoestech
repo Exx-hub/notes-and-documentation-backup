@@ -1,0 +1,152 @@
+July 30 , 2022
+
+Next with TS - tomdoestech
+
+*good takeaway - typing api response using quicktype
+
+--to get the data types of structure of api response,
+
+app.quicktype.io
+
+
+.console.log or display result using JSON.stringify
+
+then copy code to quicktype to convert json strings into interfaces for TS
+-then create interfaces folder and copy and export 
+
+-once types are created, start typing all necessary 
+
+
+1. GetStaticProps
+2. data from api - create appropriate interfaces for the response
+3. this will infer type of props returned by getStaticProps
+4. type the props accepted by component - either interface in props or NextPage<Props> --- like react.Fc
+
+5. map through character array and display in ul as li element - created Component for CharacterItem
+6. passed single character as props and typed the props received by CharacterItem component
+
+
+7. encountered error cause of image src from api:
+
+Error: Invalid src prop (https://rickandmortyapi.com/api/character/avatar/1.jpeg) on `next/image`, hostname "rickandmortyapi.com" is not configured under images in your `next.config.js`
+
+-fix is add config setting to next.config.js
+
+-add source of image which is rickandmortyapi.com
+
+images: {
+    domains: ["rickandmortyapi.com"],
+  },
+  
+  
+  next.config should appear as:
+  
+  /** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ["rickandmortyapi.com"],
+  },
+};
+
+module.exports = nextConfig;
+
+
+references: 
+https://nextjs.org/docs/messages/next-image-unconfigured-host
+https://stackoverflow.com/questions/64909447/got-an-error-invalid-src-prop-here-is-a-link-on-next-image-hostname-loca
+
+
+** since youre using image src from an api, you cant export static website using the Image Optimization
+-- use of a custom loader is needed.
+
+export const imageLoader = ({ src }: { src: string }) => {
+  return src;
+};
+
+// pass loader here and set unoptimized
+    <Image
+        loader={imageLoader}
+        unoptimized
+        src={character.image}
+        width={200}
+        height={200}
+        alt={character.name}
+      />
+      
+// then configure next.config.js
+
+
+next export - creates a prod ready static build
+npx serve out - will run the prod build on your local server
+
+8. encountered error after npm run build and export
+-- switched node version to latest, v16.13.2
+-- then npx serve out -- works
+-- npx serve out -p 5000 to run in port 5000
+
+
+***type assertion for getStaticProps context 
+
+https://wallis.dev/blog/nextjs-getstaticprops-and-getstaticpaths-with-typescript
+
+
+
+9. Example of Optional Layout in NExt with TS
+
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import Layout from "../components/Layout";
+import { ReactElement, ReactNode } from "react";
+import { NextPage } from "next";
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropswithLayout = AppProps & { // typing of appProps with optional getLayout
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropswithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
+  return getLayout(<Component {...pageProps} />);
+}
+
+export default MyApp;
+
+-- then use in component
+
+
+interface CharacterByIdProps {
+  character: Character;
+}
+
+const CharacterById = ({ character }: CharacterByIdProps) => {
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h1>{character.name}</h1>
+      <Image
+        loader={imageLoader}
+        unoptimized
+        src={character.image}
+        alt={character.name}
+        width={300}
+        height={300}
+      />
+    </div>
+  );
+};
+
+CharacterById.getLayout = function getLayout(page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
+};
+
+export default CharacterById;
+
+
+-- dynamic layout component study further.
+-- might be confusing just because of TS
+-- have a look in no TS

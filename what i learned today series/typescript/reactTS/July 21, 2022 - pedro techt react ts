@@ -1,0 +1,93 @@
+July 21, 2022
+
+React w/ TS - pedro tech
+
+
+1. optional props 
+
+interface PersonProps {
+  name: string;
+  age: number;
+  email: string;
+  occupation?: string; //optional
+}
+
+
+2. another way to pass props to functional components - using FC type
+
+import {FC} from "react";
+
+interface AnimalProps {
+  name: string;
+  species: string;
+  breed: string;
+  ageInMonths: number;
+}
+
+const Animal: FC<AnimalProps> = ({ name, species, breed, ageInMonths }) => {
+  return (
+    <div>
+      <h2>
+        {name}, {species}, {breed}, {ageInMonths}
+      </h2>
+    </div>
+  );
+}
+
+export default Animal;
+
+
+
+3. ChangeEvent Typing and useState
+
+4. use interface for objects instead of Type
+5. use type for different types not just objects -- ex. type NickNameType = "Alvin" | "Meg"
+ 	 - nickname can only be alvin or meg
+
+
+6. CONTEXT API -
+
+interface ContextValueInterface {
+  name: string;
+  age: number;
+  country: string;
+}
+
+interface AppContextInterface {
+  contextValue: ContextValueInterface;
+  setContextValue?: React.Dispatch<React.SetStateAction<ContextValueInterface>>;
+}
+
+export const AppContext = createContext<AppContextInterface | null>(null);
+
+const App: FC = () => {
+
+  const [contextValue, setContextValue] = useState<ContextValueInterface>({
+    name: "Avlin",
+    age: 35,
+    country: "PH",
+  });
+  return (
+   
+      <AppContext.Provider value={{ contextValue, setContextValue }}>
+        <div className="App">
+          <Person
+            name="Alvin"
+            age={35}
+            email="alvinfloresacosta@gmail.com"
+            hairColor={HairColor.Blonde}
+          />
+      </AppContext.Provider>
+     
+  );
+};
+
+export default App;
+
+--interface for contextValue object
+-- interface for AppContext -- with dispatch
+
+
+
+**interfaces are used a lot!
+** study more on enums
