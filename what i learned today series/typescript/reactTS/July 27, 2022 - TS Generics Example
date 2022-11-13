@@ -1,0 +1,123 @@
+July 27, 2022
+
+Intro To TS Generics
+
+
+
+Parent:
+
+import { useState } from "react";
+import SelectList from "./SelectList";
+
+export interface Bear {
+  id: string;
+  name: string;
+  imageUrl: string;
+}
+
+const bears: Bear[] = Array.from({ length: 4 }).map((_, index) => ({
+  id: `${index}`,
+  imageUrl: "https://placebear.com/300/200",
+  name: `Bear ${index}`,
+}));
+
+export interface Kitten {
+  id: string;
+  cuteName: string;
+  cutePic: string;
+}
+
+const kittens: Kitten[] = Array.from({ length: 4 }).map((_, index) => ({
+  id: `${index}`,
+  cuteName: `Kitten ${index}`,
+  cutePic: `https://placekitten.com/300/200`,
+}));
+
+export interface IGenericsProps {}
+
+function Generics(props: IGenericsProps) {
+  const [selectedBear, setSelectedBear] = useState<Bear | undefined>();
+  const [selectedKitten, setSelectedKitten] = useState<Kitten | undefined>();
+  return (
+    <div className="container">
+      <h2>Select Bear</h2>
+      <SelectList
+        items={bears}
+        getImageUrl={(bear) => bear.imageUrl}
+        getLabel={(bear) => bear.name}
+        onSelect={setSelectedBear}
+        selected={selectedBear}
+      />
+
+      <h2>Select Kitten</h2>
+      <SelectList
+        items={kittens}
+        getImageUrl={(kitten) => kitten.cutePic}
+        getLabel={(kitten) => kitten.cuteName}
+        onSelect={setSelectedKitten}
+        selected={selectedKitten}
+      />
+    </div>
+  );
+}
+export default Generics;
+
+
+Child:
+
+
+import * as React from "react";
+import { Bear, Kitten } from "./Generics";
+
+// type BearOrKitten = Bear | Kitten
+
+// export interface ISelectListProps {
+//   items: BearOrKitten[];
+//   getImageUrl: (animal: BearOrKitten) => string;
+//   getLabel: (animal: BearOrKitten) => string;
+//   onSelect: React.Dispatch<React.SetStateAction<BearOrKitten | undefined>>;
+//   selected?: BearOrKitten;
+// }
+
+// problem above is my functions / props need to accept different property names, one for bear and another for cat.
+// creates more of a problem if additional arrays are included like a dog array. that makes it harder because you
+// need to expect props for dogs as well.
+
+// this is where generics come in. create a function that accepts generic/ dynamic parameters.
+// much like function parameters or function component props. can be dynamic.
+
+// T is a type parameter === generic
+// the generic type T extends an id: string. so all generic items passed should have an id property that is a string
+// enforced. any object we pass to this component must have an id: string
+export interface ISelectListProps<T extends { id: string }> {
+  items: T[]; // this is basically an array of anything but must comply with our T definition (id:string)
+  getImageUrl: (animal: T) => string; // so this function takes in a T object and returns a string
+  getLabel: (animal: T) => string; // so this function takes in a T object and returns a string
+  onSelect: (animal: T) => void; // so this function takes in a T object and returns nothing
+  selected?: T; // a T object (id: string)
+}
+
+function SelectList<T extends { id: string }>({
+  items,
+  getImageUrl,
+  getLabel,
+  onSelect,
+  selected,
+}: ISelectListProps<T>) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li id={item.id} key={item.id} onClick={() => onSelect(item)}>
+          <img
+            src={getImageUrl(item)}
+            alt={getLabel(item)}
+            className={selected?.id === item.id ? "selected" : ""}
+          />
+          <span>{getLabel(item)}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default SelectList;

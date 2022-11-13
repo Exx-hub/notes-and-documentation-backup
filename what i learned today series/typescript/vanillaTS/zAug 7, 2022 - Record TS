@@ -1,0 +1,39 @@
+Aug 7, 2022
+
+
+RECORD
+
+
+// basic or generic
+
+type MyRecord = Record<string,number>
+
+
+let myObj: MyRecord = {
+    name: 100,
+    age: 2
+}
+
+
+// strictly typed
+
+type Properties = "name" | "job" | "specialty"
+type Values = {link: string, pageNumber: number} 
+  
+type ConstrainedRecord = Record<Properties, Values>
+
+
+const apiResponse: ConstrainedRecord = {
+    name: {
+        link: "www.example.com",
+        pageNumber: 100
+    },
+    job: {
+        link: "www.google.com",
+        pageNumber: 245
+    },
+    specialty: {
+        link: "www.yahoo.cpom",
+        pageNumber: 9
+    }
+}
