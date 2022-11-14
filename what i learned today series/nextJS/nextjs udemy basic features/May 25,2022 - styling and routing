@@ -1,0 +1,22 @@
+May 25, 2022
+
+to change the port of development mode in next js
+-in package.json => "dev": "next dev -p 3001" or any port number you want
+
+
+if you dont explicitly add an anchor tag in a Link component, under the hood next js places an anchor tag there
+-but if you explicitly put an anchor tag, nextjs knows not to add additional anchor tag and will use the one you added
+
+-just played around with some javascript
+
+some next routing and css styling for next js
+
+also some html
+
+useRef was also used
+
+react components
+reusable react components
+
+SUMMARY:
+next js routing and styling!

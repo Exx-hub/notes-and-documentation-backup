@@ -1,0 +1,32 @@
+June 9 , 2022
+
+Next JS Project
+
+-Image component src property
+
+- either do it the normal react way wherein you import
+
+import me from "../../public/me4.jpg"; as a variable and point to path of public folder
+
+
+or
+
+src="/me4.jpg" // automatically points at public root. so no need to add /public
+
+since Image components point at public root so just do this.
+
+
+image width and height - either add these in the Image components properties or still do the dimensions in your css
+
+
+
+---look into rendering of next js components with props from slug or query, when you refresh you lose props passed making
+the props passed undefined, causing an error.
+
+
+
+getSTaticPaths - params: { id: item.id }
+
+
+if you do not put the id or the name of the slug you use for dynamic routes, next will not know which pages it will
+statically generate in advance.
