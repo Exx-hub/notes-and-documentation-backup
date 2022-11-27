@@ -1,0 +1,201 @@
+IMPORTANT REFERENCE LINKS
+
+
+++Typescript and react in depth blog
+
+https://devtrium.com/posts/react-typescript-using-generics-in-react
+
+https://devtrium.com/posts/react-typescript-how-to-type-hooks
+
+++React TS Events
+
+https://devtrium.com/posts/react-typescript-events
+
+++React Best PRactices
+
+https://www.freecodecamp.org/news/best-practices-for-react/?fbclid=IwAR3htIRyGRcdXEm_9ZK3z-jR8mVIIyjRGOR4Q9rR2HwlGH5_oeVke1fNXSw
+
+++How To Mock API Calls in JEST
+
+https://dev.to/zaklaughton/the-only-3-steps-you-need-to-mock-an-api-call-in-jest-39mb
+
+++React Jargons and concepts
+
+https://www.youtube.com/watch?v=bZRqmobuJvM
+
+++React 18 Glossary Dan Abramov
+
+https://github.com/reactwg/react-18/discussions/46
+
+++useEffect uses and cleanup and mounted
+
+https://www.youtube.com/watch?v=QQYeipc_cik&list=WL&index=4
+
+https://www.youtube.com/watch?v=dH6i3GurZW8&t=102s
+
+https://dev.to/otamnitram/react-useeffect-cleanup-how-and-when-to-use-it-2hbm
+
+++Derived State
+
+https://www.youtube.com/watch?v=tz0fDABt67g&list=WL&index=36&t=116s
+
+++How is state merged in class components and in functional components
+
+https://imrobinkim.medium.com/how-state-updates-are-merged-in-react-e07fc669fec2
+
+++React Testing codevolution
+
+
+++response cookies and request cookies interaction
+
+https://chnm.gmu.edu/digitalhistory/links/cached/chapter5/link5.29b.cookies.html
+
+Missing cookie: 
+https://medium.com/swlh/7-keys-to-the-mystery-of-a-missing-cookie-fdf22b012f09
+
+Client-Side Authentication:
+https://www.section.io/engineering-education/client-side-auth-with-express-cookie-parser/
+
+Cookies from server set using:
+
+Set-Cookie or Res.cookie
+
+are sent to the client with the response object. path is set. "/" for example.
+
+then all requests to "/" shall have cookie in the request object. which is accessible with req.cookies in the server.
+
+++Persist Login blogs
+
+https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/
+
+https://blog.logrocket.com/persistent-login-in-react-using-refresh-token-rotation/
+
+++invisible link to skip to main content for screen readers
+
+https://www.youtube.com/watch?v=VUR0I5mqq7I&list=WL&index=2
+
+++React Lazy component loading , code splitting, suspense
+
+https://www.youtube.com/watch?v=-4fyyyQjsz8&list=WL&index=6
+
+++Backend Ninja Roadmap
+
+https://medium.com/@dash.ps/backend-roadmap-to-master-nodejs-c508742ab74f
+
+++CONSUMING APIS
+
+https://www.freecodecamp.org/news/how-to-use-rest-api/?fbclid=IwAR0jfXGRaF8PLUlKJbyRjZE5eoW2V_wrtE2ysOJPwMAea01on0quU0NLmoE
+
+++RENDER PROPS
+https://www.youtube.com/watch?v=EZil2OTyB4w
+
+++JS V8 faster initialization
+https://morioh.com/p/f7120a1a66a2?f=5cb7d89d660c8335951ca454&fbclid=IwAR1F--BKHJ1uA0creqst_h5JhyGYkbrZIobnjv8oHg-DqmBro9Wqk3tyD-s
+
+++MISC REACT
+
+https://alexkondov.com/tao-of-react/
+https://www.patterns.dev/
+
+++100vh height for each section of page when scrolling
+
+https://www.youtube.com/watch?v=56a7USlq6SM&list=PL0Zuz27SZ-6M8znNpim8dRiICRrP5HPft&index=3
+
+36 min mark
+
+++ responsiveness easy tips and MEDIA QUERIES approach
+
+https://www.youtube.com/watch?v=VQraviuwbzU
+
+media queries => add complexity, not to overwrite initially set rules
+
+ex. big screen => font-sze big
+then medium screen => re-set font size to small
+
+--- it should be => medium screen - font size default
+then big screen add media query => font size big
+
+++deploying backend on render 
+
+ dave gray mern stack reference
+
+++react ts vite web dev - single select multiselect dropdown
+https://www.youtube.com/watch?v=bAJlYgeovlg&list=WL&index=2
+
+++deployed react app 404 on refresh or manual routing
+
+Add Redirect or Rewrite Rules
+
+redirect back to /index.html to prevent 404 when hitting refresh or manually going to a route like         /login
+
+some also say use HashRouter if using react router
+
+i think in go daddy htaccess file does this
+
+
+++RTL JEST TESTING reference - vishwas
+https://www.youtube.com/playlist?list=PLC3y8-rFHvwirqe1KHFCHJ0RqNuN61SJd
+
+++return res.json vs res.json only
+https://www.google.com/search?q=return+response+or+just+res.json&oq=return+response+or+just+res.json&aqs=chrome..69i57j0i546l3.9163j0j7&sourceid=chrome&ie=UTF-8
+
+++stopPropagation - prevent click to go to parent's onclick
+https://www.freecodecamp.org/news/event-propagation-event-bubbling-event-catching-beginners-guide/
+
+  const handleDivClick = (e) => {
+    e.stopPropagation();
+    console.log(e.target.id);
+  };
+
+
+++graphql beginner guide for FE
+https://www.freecodecamp.org/news/graphql-for-front-end-developers/
+
+++REACT QUERY vs RTK QUERY
+https://www.youtube.com/watch?v=LDS1ll93P-s
+
+++createContext default value vs no default value vs value property in Provider
+https://www.google.com/search?q=create+context+default+value&oq=create+context+def&aqs=chrome.0.0i512j69i57j0i22i30l8.3116j0j7&sourceid=chrome&ie=UTF-8
+
+++MVC and MVC with reactJS
+https://shubhamjha25.medium.com/understanding-the-mvc-architecture-in-the-mern-stack-aff893abce50
+
+++css grid tricks and firefox grid overlay
+basically kevin powell vids
+
+--grid template areas
+--grid helper tool in dev tools (grid inspector)
+-- grid vs flexbox
+
+++typing localstorage for TS
+https://medium.com/@gcascio/how-to-add-types-to-your-local-storage-9e47ca0087af
+
+++TS tempo ignore
+whole file -
+// @ts-nocheck
+
+one line -
+// @ts-ignore
+
+FixMeLater
+
+https://stackoverflow.com/questions/51145180/how-to-use-ts-ignore-for-a-block
+
+++git rebasing and merging
+https://harness.io/blog/git-rebasing-and-merging
+
+++user-scalable=no --- remove white space mobile
+https://www.google.com/search?q=how+to+remove+white+space+in+mobile+view&oq=remove+white+space+mo&aqs=chrome.1.69i57j0i22i30j0i8i13i30j0i390l4.8479j0j7&sourceid=chrome&ie=UTF-8
+
+https://uxmovement.com/mobile/how-to-display-large-data-tables-on-small-screens/
+
+++change something in state when screen reaches breakpoint
+useEffect(() => {
+    let mediaQuery = window.matchMedia('(max-width: 768px)')
+
+    if(mediaQuery.matches){
+      setIsCollapsed(true)
+    }
+  },[])
+  
+  
