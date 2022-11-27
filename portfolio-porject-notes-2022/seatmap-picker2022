@@ -1,0 +1,77 @@
+11/29/22
+
+Seat Picker portfoio project
+
+
+1. create react app --template typescript
+
+2. push main branch to github initially
+
+3. create develop branch for development
+
+4. install tailwind and redux toolkit and react router
+
+4.1 install antd 
+- npm i antd
+- add import in index.tsx => import "antd/dist/reset.css";
+
+5. plan folder structure based on using redux toolkit instead of class based object - done.
+
+6. plan components to create 
+login page* i think no login is needed. if no login, no need for protected routes...
+
+home
+bookingDetail
+transaction history
+about page
+
+7. configure routing
+
+
+
+
+=====> decided to just clone existing and do changes:
+
+--selling point of this app is not backend and css and stuff -- but what i want to show is the seatpicker itself
+
+changes done:
+
+-remove tailwind -D
+-remove reduxtoolkit -D
+
+-remove login page -D
+-remove about -D
+-remove profile - D
+- make generic - D
+
+======================
+
+1. -- add media queries for mobile. - seat map now then the rest of viewports from tablet up - done mobile first approach
+
+
+
+2. -- fix typescript types FixMeLAter and ts-ignore ts-nocheck --- done
+
+3. -- optimize seatmap and seatpicker functionality
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
