@@ -1,0 +1,24 @@
+Dec 7, 2022
+
+mongodb in node with mongoose model vs mongodb in nextjs
+
+if using mongoose, you can use built in mongoose objects and function like model and schema.
+
+but in next js app, no mongoose but mongodb only.
+
+the way to connect is by creating a new MongoClient
+-passing database name
+-passing collection name
+
+---in mongoose these are done by models and schema
+
+
+-compare full stacks apps or node js apps
+
+with
+
+-nextjs apps using mongodb.
+
+
+
+the way to connect and specify database and collection is different.
