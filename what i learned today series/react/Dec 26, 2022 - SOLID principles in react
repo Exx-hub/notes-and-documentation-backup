@@ -1,0 +1,106 @@
+December 26, 2022
+
+SOLID principles of programming in terms of REACT
+
+
+1. The Single Responsibility Principle
+-instead of a monolithic component where a lot of things are happening, this principle can basically mean to break your component into smaller manageable and reusable components.
+
+- for multiple states use custom hooks.
+- create components for parts of the big component.
+
+ex. one component for filtering data
+    one component for mapping through data and displaying a sub component for each
+    custom hook for fetching products
+    custom hook for initial and adjusting of filtering rate. 
+    
+-- basically distributing the functions to different smaller components and just rendering those small components together in your main component instead of a monolithic approach where everything from fetching to filtering and rendering all in one.
+
+=====================================================================
+
+2. Open-Closed Principle
+- instead of changing how things are rendered in your component based on a prop value like setting a condition,  instead pass as props.
+- this way the main component does not change, but keeps its dynamic rendered variable.
+
+ex. pass icons for each use of Button component
+<Button
+        text="Go Home"
+        // role="forward"
+        icon={<HiOutlineArrowNarrowRight />}
+      />
+      <Button
+        text="Go Back"
+        // role="back"
+        icon={<HiOutlineArrowNarrowLeft />}
+      />
+      
+      
+-- button component will just render icon prop depending on passed prop.
+
+      <div className="m-2">
+        {icon}
+      </div>
+      
+-- instead of using role as condition
+
+      <div className="m-2">
+        {role === "forward" && <HiOutlineArrowNarrowRight />}
+        {role === "back" && <HiOutlineArrowNarrowLeft />}
+      </div>
+      
+      -- this is okay for just two but if there are multiple roles can get messy
+      
+=======================================================================
+
+3. Liskov Substitution Principle
+
+-- kinda weird but SearchInput component renders a bare html input element.
+-- make sure to pass all the props? ...restProps? idk..
+
+-- to be researched...
+
+
+
+
+=========================================================================
+
+
+4. Interface Segregation Principle
+
+-- based on video explanation, a component that needs only a certain prop, should only receive that.
+-- example, a Thumbnail component that uses the imageUrl of a product, should be passed only the imageUrl as prop. not the whole product where all the other details of the product like title, description, price... the Thumbnail component doesnt need those. it just needs the imageUrl so only pass the imageUrl to it.
+
+
+ex. wrong: <Thumbnail product={product} />
+
+ex. correct: <Thumbnail imageUrl={product.imageUrl} />
+
+
+=========================================================================
+
+5. Dependency Inversion Principle
+
+
+-- not clear, in video, instead of a Form component that connects to the login api, make a ConnectedForm ccomponent which does the api calling, and just renders and passes props to unconnected bare form. hmmm
+
+
+-- somehow abstracting the api call from the form itself putting the calling logic outside as an abstraction but available for use and reusable in other components.
+
+
+--For the last principle (D), another good example is Create vs Edit forms. In our application, we have 2 areas where these forms are shared, but their submit logic is different for each, so we've taken the exact same approach by extracting the form itself into its own component, and then move the submission logic (React Query mutations), into two separate parents, CreateForm and EditForm, where the actual form component can be configured there. It's a very nice separation of concerns: UI vs. request logic.
+
+
+--- so basically, an AddProduct and an EditProduct, uses the same form but different submission logic.
+--- this principle is handy here. and you have done this already. in nodejs.
+
+
+
+
+
+
+
+
+
+
+
+
